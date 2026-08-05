@@ -3,34 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio - Desarrollador Web</title>
+    <title>Nicolás Zorrilla — Diseñador Gráfico &amp; Desarrollador Front-end</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-    <link rel="icon" href="NZ-Logo-Page.png">
-
-
-
+    <link rel="icon" href="images/NZ-Logo-Page.ico">
 </head>
 <body>
+
     <!-- Navbar -->
     <nav class="navbar">
         <div class="navbar-container">
             <a href="#inicio" class="navbar-brand">
-                <img src="NZ-Logo-White.png" 
-                    data-dark="NZ-Logo-White.png" 
-                    data-light="NZ-Logo-Black.png" 
-                    alt="Logo de Nicolás Zorrilla" 
-                    class="navbar-logo" 
+                <img src="images/NZ-Logo-White.ico"
+                    data-dark="images/NZ-Logo-White.ico"
+                    data-light="images/NZ-Logo-Black.ico"
+                    alt="Logo de Nicolás Zorrilla"
+                    class="navbar-logo"
                     id="navbarLogo">
-            </a>        
+                <span class="navbar-brand-text">Nicolás<br>Zorrilla</span>
+            </a>
+
             <ul class="navbar-menu" id="navbarMenu">
-                <li><a href="#inicio" class="navbar-link">Inicio</a></li>
-                <li><a href="#proyectos" class="navbar-link">Proyectos</a></li>
-                    <li><a href="#logos" class="navbar-link">Logotipos</a></li>
-                <li><a href="#contacto" class="navbar-link">Contacto</a></li>
+                <li><a href="#inicio" class="navbar-link"><span class="navlink-index">01</span>Inicio</a></li>
+                <li><a href="#logos" class="navbar-link"><span class="navlink-index">02</span>Logotipos</a></li>
+                <li><a href="#proyectos" class="navbar-link"><span class="navlink-index">03</span>Proyectos</a></li>
+                <li><a href="#contacto" class="navbar-link"><span class="navlink-index">04</span>Contacto</a></li>
                 <li><a href="#contacto" class="navbar-cta">Trabajemos juntos</a></li>
             </ul>
-            
+
             <div class="navbar-toggle" id="navbarToggle">
                 <span></span>
                 <span></span>
@@ -43,37 +48,48 @@
         <i id="themeIcon" class="bi bi-moon-fill"></i>
     </button>
 
-
-
     <div class="container">
-        <div class="hero-section" id="inicio">
-            <div class="hero-decoration deco-1"></div>
-            <div class="hero-decoration deco-2"></div>
-            
-            <div class="profile-section">
-                <div class="profile-picture-wrapper">
-                    <div class="profile-ring"></div>
-                    <img src="Logo2-W.png" 
-                        data-dark="Logo2-W.png" 
-                        data-light="Logo2-B.png" 
-                        alt="Foto de perfil de Nicolás Zorrilla" 
-                        class="profile-picture" 
-                        id="profilePicture">
-                </div>
-            </div>
 
-            <header>
-                <h1>Nicolás Zorrilla</h1>
-                <p class="subtitle">Diseñador UI/UX y Desarrollador Front-end</p>
-                
-                <div class="availability-badge">
-                    <span class="status-dot"></span>
-                    <span>Disponible para proyectos</span>
+        <!-- HERO -->
+        <div class="hero-section" id="inicio">
+            <div class="hero-frame">
+                <span class="crop tl"></span><span class="crop tr"></span>
+                <span class="crop bl"></span><span class="crop br"></span>
+
+                <div class="hero-tag hero-tag-left">
+                    <span class="eyebrow">Portfolio — 2026</span>
                 </div>
-                
-                <p class="intro-text">Presentación de algunos de mis proyectos desarrollados</p>
-                
+                <div class="hero-tag hero-tag-right">N.01°</div>
+
+                <div class="profile-section">
+                    <div class="profile-picture-wrapper">
+                        <div class="profile-ring"></div>
+                        <img src="images/pp-violet.png"
+                            data-dark="images/pp-lime.png"
+                            data-light="images/pp-violet.png"
+                            alt="Foto de perfil de Nicolás Zorrilla"
+                            class="profile-picture"
+                            id="profilePicture">
+                    </div>
+                </div>
+
+                <header>
+                    <h1>Nicolás<br>Zorrilla</h1>
+                    <p class="subtitle">Diseñador gráfico, UI/UX Designer &amp; Desarrollador Front-end</p>
+
+                    <div class="availability-badge">
+                        <span class="status-dot"></span>
+                        <span>Disponible para proyectos</span>
+                    </div>
+
+                    <p class="intro-text">Presentación de algunos de mis proyectos desarrollados</p>
+                </header>
+
                 <div class="stats-container">
+                    <div class="stat-card">
+                        <div class="stat-number">20+</div>
+                        <div class="stat-label">Logotipos</div>
+                    </div>
                     <div class="stat-card">
                         <div class="stat-number">4+</div>
                         <div class="stat-label">Proyectos</div>
@@ -83,195 +99,268 @@
                         <div class="stat-label">Responsive</div>
                     </div>
                     <div class="stat-card">
-                        <div class="stat-number">3+</div>
+                        <div class="stat-number">5+</div>
                         <div class="stat-label">Tecnologías</div>
                     </div>
                 </div>
-            </header>
-        </div>
-
-        <div class="projects-grid" id="proyectos">
-            <div class="project-card">
-                <div class="project-number">1</div>
-                <h3 class="project-title">Página para Rotisería 🍔</h3>
-                <p class="project-description">Plataforma de administración de Rotisería con su lista de pedidos, sistema de pedidos, total de ganancias categorizadas, panel de administración de productos y clientes. Diseño responsivo y experiencia de usuario optimizada.</p>
-                <div class="project-tech">
-                    <span class="tech-tag">HTML5</span>
-                    <span class="tech-tag">CSS3</span>
-                    <span class="tech-tag">JavaScript</span>
-                    <span class="tech-tag">Responsive</span>
-                </div>
-                <a href="https://nicolaszgh.github.io/BuitreDelivery-Preview/" target="_blank" class="project-link">Ver Proyecto</a>
-            </div>
-
-            <div class="project-card">
-                <div class="project-number">2</div>
-                <h3 class="project-title">Portfolio de Dibujos 🖌️</h3>
-                <p class="project-description">Biblioteca y galería interactiva para mostrar algunos dibujos digitales de un diseñador. Filtros por categoría y animaciones suaves. Optimizado para mostrar imágenes de alta calidad.</p>
-                <div class="project-tech">
-                    <span class="tech-tag">HTML5</span>
-                    <span class="tech-tag">CSS3</span>
-                    <span class="tech-tag">JavaScript</span>
-                    <span class="tech-tag">Responsive</span>
-                </div>
-                <a href="https://nicolaszgh.github.io/Smufful-Web/" target="_blank" class="project-link">Ver Proyecto</a>
-            </div>
-
-            <div class="project-card">
-                <div class="project-number">3</div>
-                <h3 class="project-title">Presentación de marca de café ☕</h3>
-                <p class="project-description">Página básica para una cafetería donde muestra sus servicios e información a los usuarios.</p>
-                <div class="project-tech">
-                    <span class="tech-tag">HTML5</span>
-                    <span class="tech-tag">CSS3</span>
-                    <span class="tech-tag">Responsive</span>
-                </div>
-                <a href="https://nicolaszgh.github.io/HTML5-CSS5-Page/" target="_blank" class="project-link">Ver Proyecto</a>
-            </div>
-
-            <div class="project-card">
-                <div class="project-number">4</div>
-                <h3 class="project-title">Presentación de marca de mates 🧉</h3>
-                <p class="project-description">Página para una empresa de mates donde muestra sus servicios, productos e información a los usuarios.</p>
-                <div class="project-tech">
-                    <span class="tech-tag">HTML5</span>
-                    <span class="tech-tag">CSS3</span>
-                    <span class="tech-tag">Responsive</span>
-                    <span class="tech-tag">JavaScript</span>
-                    <span class="tech-tag">Bootstrap</span>
-                </div>
-                <a href="https://nicolaszgh.github.io/Boostrap-page/" target="_blank" class="project-link">Ver Proyecto</a>
             </div>
         </div>
 
+        <!-- LOGOS -->
+        <div class="logos-section" id="logos">
+            <span class="eyebrow section-eyebrow">Identidad visual</span>
+            <h2>Logotipos creados</h2>
+            <p class="logos-subtitle">Donde la creatividad se encuentra con la estrategia de marca</p>
 
-<div class="logos-section" id="logos">
-    <h2>Logotipos Creados</h2>
-    <p class="logos-subtitle">Identidad visual de marca: donde la creatividad se encuentra con la estrategia</p>
-    
-    <div class="logos-container">
-        <div class="logo-card">
-            <div class="logo-image-wrapper">
-                <img src="logos/logo1.png" alt="GalactusAmbaris - Fusión de iniciales geométrica" class="logo-image">
+            <div class="carousel">
+                <button type="button" class="carousel-arrow" id="carouselPrev" aria-label="Logo anterior">
+                    <i class="bi bi-chevron-left"></i>
+                </button>
+
+                <div class="carousel-track" id="carouselTrack" role="region" aria-roledescription="carrusel" aria-label="Logotipos creados">
+
+                    <!-- Clones iniciales (para loop infinito): Reddish, OndiPuri, CrackheadKatz -->
+                    <div class="logo-card reddish" aria-hidden="true">
+                        <span class="crop tl"></span><span class="crop tr"></span><span class="crop bl"></span><span class="crop br"></span>
+                        <span class="logo-index">ID / 06</span>
+                        <div class="logo-image-wrapper"><img src="images/logos/presentacion-reddish.png" alt="" class="logo-image" draggable="false"></div>
+                        <div class="logo-tags">
+                            <span class="logo-tag">Intenso</span><span class="logo-tag">Rebelde</span><span class="logo-tag">Dramático</span><span class="logo-tag">Juguetón</span>
+                        </div>
+                    </div>
+                    <div class="logo-card ondipuri" aria-hidden="true">
+                        <span class="crop tl"></span><span class="crop tr"></span><span class="crop bl"></span><span class="crop br"></span>
+                        <span class="logo-index">ID / 07</span>
+                        <div class="logo-image-wrapper"><img src="images/logos/presentacion-ondipuri.png" alt="" class="logo-image" draggable="false"></div>
+                        <h3 class="logo-title">OndiPuri</h3>
+                        <div class="logo-tags">
+                            <span class="logo-tag">Alegre</span><span class="logo-tag">Tierno</span><span class="logo-tag">Creativo</span><span class="logo-tag">Divertido</span>
+                        </div>
+                    </div>
+                    <div class="logo-card crackheadkatz" aria-hidden="true">
+                        <span class="crop tl"></span><span class="crop tr"></span><span class="crop bl"></span><span class="crop br"></span>
+                        <span class="logo-index">ID / 08</span>
+                        <div class="logo-image-wrapper"><img src="images/logos/presentacion-crackheadkatz.png" alt="" class="logo-image" draggable="false"></div>
+                        <h3 class="logo-title">CrackheadKatz</h3>
+                        <div class="logo-tags">
+                            <span class="logo-tag">Urbano</span><span class="logo-tag">Rebelde</span><span class="logo-tag">Gamer</span><span class="logo-tag">Llamativo</span>
+                        </div>
+                    </div>
+
+                    <!-- Slides reales -->
+                    <div class="logo-card gabinete" role="group" aria-roledescription="slide" aria-label="1 de 8">
+                        <span class="crop tl"></span><span class="crop tr"></span><span class="crop bl"></span><span class="crop br"></span>
+                        <span class="logo-index">ID / 01</span>
+                        <div class="logo-image-wrapper"><img src="images/logos/presentacion-gabineteastral.png" alt="Gabinete Astral" class="logo-image" draggable="false"></div>
+                        <h3 class="logo-title">Gabinete Astral</h3>
+                        <div class="logo-tags">
+                            <span class="logo-tag">Monograma</span><span class="logo-tag">Precisión</span><span class="logo-tag">Corporativo</span><span class="logo-tag">Abstracción</span>
+                        </div>
+                    </div>
+
+                    <div class="logo-card naturalistic" role="group" aria-roledescription="slide" aria-label="2 de 8">
+                        <span class="crop tl"></span><span class="crop tr"></span><span class="crop bl"></span><span class="crop br"></span>
+                        <span class="logo-index">ID / 02</span>
+                        <div class="logo-image-wrapper"><img src="images/logos/presentacion-naturlaisticphotos.png" alt="NaturalisticPhotos" class="logo-image" draggable="false"></div>
+                        <h3 class="logo-title">NaturalisticPhotos</h3>
+                        <div class="logo-tags">
+                            <span class="logo-tag">Biomórfico</span><span class="logo-tag">Fusión</span><span class="logo-tag">Natural</span><span class="logo-tag">Fluidez</span>
+                        </div>
+                    </div>
+
+                    <div class="logo-card chm" role="group" aria-roledescription="slide" aria-label="3 de 8">
+                        <span class="crop tl"></span><span class="crop tr"></span><span class="crop bl"></span><span class="crop br"></span>
+                        <span class="logo-index">ID / 03</span>
+                        <div class="logo-image-wrapper"><img src="images/logos/presentacion-chm.png" alt="CHM Producciones" class="logo-image" draggable="false"></div>
+                        <h3 class="logo-title">CHM Producciones</h3>
+                        <div class="logo-tags">
+                            <span class="logo-tag">Auditivo</span><span class="logo-tag">Rítmico</span><span class="logo-tag">Contemporáneo</span><span class="logo-tag">Integrado</span>
+                        </div>
+                    </div>
+
+                    <div class="logo-card fatal" role="group" aria-roledescription="slide" aria-label="4 de 8">
+                        <span class="crop tl"></span><span class="crop tr"></span><span class="crop bl"></span><span class="crop br"></span>
+                        <span class="logo-index">ID / 04</span>
+                        <div class="logo-image-wrapper"><img src="images/logos/presentacion-fatalblow.png" alt="Fatal Blow" class="logo-image" draggable="false"></div>
+                        <h3 class="logo-title">Fatal Blow</h3>
+                        <div class="logo-tags">
+                            <span class="logo-tag">Bio-urbano</span><span class="logo-tag">Experimental</span><span class="logo-tag">Resiliencia</span><span class="logo-tag">Transgresor</span>
+                        </div>
+                    </div>
+
+                    <div class="logo-card nz" role="group" aria-roledescription="slide" aria-label="5 de 8">
+                        <span class="crop tl"></span><span class="crop tr"></span><span class="crop bl"></span><span class="crop br"></span>
+                        <span class="logo-index">ID / 05</span>
+                        <div class="logo-image-wrapper"><img src="images/logos/presentacion-nz.png" alt="NZ" class="logo-image" draggable="false"></div>
+                        <h3 class="logo-title">NZ</h3>
+                        <div class="logo-tags">
+                            <span class="logo-tag">Marca Personal</span><span class="logo-tag">Esencial</span><span class="logo-tag">Versátil</span><span class="logo-tag">Estructurado</span>
+                        </div>
+                    </div>
+
+                    <div class="logo-card reddish" role="group" aria-roledescription="slide" aria-label="6 de 8">
+                        <span class="crop tl"></span><span class="crop tr"></span><span class="crop bl"></span><span class="crop br"></span>
+                        <span class="logo-index">ID / 06</span>
+                        <div class="logo-image-wrapper"><img src="images/logos/presentacion-reddish.png" alt="Reddish" class="logo-image" draggable="false"></div>
+                        <div class="logo-tags">
+                            <span class="logo-tag">Intenso</span><span class="logo-tag">Rebelde</span><span class="logo-tag">Dramático</span><span class="logo-tag">Juguetón</span>
+                        </div>
+                    </div>
+
+                    <div class="logo-card ondipuri" role="group" aria-roledescription="slide" aria-label="7 de 8">
+                        <span class="crop tl"></span><span class="crop tr"></span><span class="crop bl"></span><span class="crop br"></span>
+                        <span class="logo-index">ID / 07</span>
+                        <div class="logo-image-wrapper"><img src="images/logos/presentacion-ondipuri.png" alt="OndiPuri" class="logo-image" draggable="false"></div>
+                        <h3 class="logo-title">OndiPuri</h3>
+                        <div class="logo-tags">
+                            <span class="logo-tag">Alegre</span><span class="logo-tag">Tierno</span><span class="logo-tag">Creativo</span><span class="logo-tag">Divertido</span>
+                        </div>
+                    </div>
+
+                    <div class="logo-card crackheadkatz" role="group" aria-roledescription="slide" aria-label="8 de 8">
+                        <span class="crop tl"></span><span class="crop tr"></span><span class="crop bl"></span><span class="crop br"></span>
+                        <span class="logo-index">ID / 08</span>
+                        <div class="logo-image-wrapper"><img src="images/logos/presentacion-crackheadkatz.png" alt="CrackheadKatz" class="logo-image" draggable="false"></div>
+                        <h3 class="logo-title">CrackheadKatz</h3>
+                        <div class="logo-tags">
+                            <span class="logo-tag">Urbano</span><span class="logo-tag">Rebelde</span><span class="logo-tag">Gamer</span><span class="logo-tag">Llamativo</span>
+                        </div>
+                    </div>
+
+                    <!-- Clones finales (para loop infinito): Gabinete, NaturalisticPhotos, CHM -->
+                    <div class="logo-card gabinete" aria-hidden="true">
+                        <span class="crop tl"></span><span class="crop tr"></span><span class="crop bl"></span><span class="crop br"></span>
+                        <span class="logo-index">ID / 01</span>
+                        <div class="logo-image-wrapper"><img src="images/logos/presentacion-gabineteastral.png" alt="" class="logo-image" draggable="false"></div>
+                        <h3 class="logo-title">Gabinete Astral</h3>
+                        <div class="logo-tags">
+                            <span class="logo-tag">Monograma</span><span class="logo-tag">Precisión</span><span class="logo-tag">Corporativo</span><span class="logo-tag">Abstracción</span>
+                        </div>
+                    </div>
+                    <div class="logo-card naturalistic" aria-hidden="true">
+                        <span class="crop tl"></span><span class="crop tr"></span><span class="crop bl"></span><span class="crop br"></span>
+                        <span class="logo-index">ID / 02</span>
+                        <div class="logo-image-wrapper"><img src="images/logos/presentacion-naturlaisticphotos.png" alt="" class="logo-image" draggable="false"></div>
+                        <h3 class="logo-title">NaturalisticPhotos</h3>
+                        <div class="logo-tags">
+                            <span class="logo-tag">Biomórfico</span><span class="logo-tag">Fusión</span><span class="logo-tag">Natural</span><span class="logo-tag">Fluidez</span>
+                        </div>
+                    </div>
+                    <div class="logo-card chm" aria-hidden="true">
+                        <span class="crop tl"></span><span class="crop tr"></span><span class="crop bl"></span><span class="crop br"></span>
+                        <span class="logo-index">ID / 03</span>
+                        <div class="logo-image-wrapper"><img src="images/logos/presentacion-chm.png" alt="" class="logo-image" draggable="false"></div>
+                        <h3 class="logo-title">CHM Producciones</h3>
+                        <div class="logo-tags">
+                            <span class="logo-tag">Auditivo</span><span class="logo-tag">Rítmico</span><span class="logo-tag">Contemporáneo</span><span class="logo-tag">Integrado</span>
+                        </div>
+                    </div>
+
+                </div>
+
+                <button type="button" class="carousel-arrow" id="carouselNext" aria-label="Logo siguiente">
+                    <i class="bi bi-chevron-right"></i>
+                </button>
             </div>
-            <div class="logo-info">
-                <h3 class="logo-title">GalactusAmbaris</h3>
-                <p class="logo-description">Imagotipo que fusiona las letras G y A mediante geometría precisa. La simetría y equilibrio visual transmiten profesionalismo y enfoque analítico para una agencia de marketing digital.</p>
-                <div class="logo-tags">
-                    <span class="logo-tag">Monograma</span>
-                    <span class="logo-tag">Precisión</span>
-                    <span class="logo-tag">Corporativo</span>
-                    <span class="logo-tag">Abstracción</span>
+
+            <div class="carousel-dots" id="carouselDots"></div>
+        </div>
+
+        <!-- PROYECTOS -->
+        <div class="projects-section" id="proyectos">
+            <span class="eyebrow section-eyebrow">Desarrollo web</span>
+            <h2>Proyectos</h2>
+            <p class="logos-subtitle">Trabajo de front-end aplicado a casos reales</p>
+
+            <div class="projects-grid">
+                <div class="project-card">
+                    <span class="crop tl"></span><span class="crop tr"></span>
+                    <span class="crop bl"></span><span class="crop br"></span>
+                    <div class="project-number">01</div>
+                    <h3 class="project-title">Página para Rotisería 🍔</h3>
+                    <p class="project-description">Plataforma de administración de Rotisería con su lista de pedidos, sistema de pedidos, total de ganancias categorizadas, panel de administración de productos y clientes. Diseño responsivo y experiencia de usuario optimizada.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">HTML5</span>
+                        <span class="tech-tag">CSS3</span>
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">Responsive</span>
+                    </div>
+                    <a href="https://nicolaszgh.github.io/BuitreDelivery-Preview/" target="_blank" class="project-link">Ver Proyecto <i class="bi bi-arrow-up-right"></i></a>
+                </div>
+
+                <div class="project-card">
+                    <span class="crop tl"></span><span class="crop tr"></span>
+                    <span class="crop bl"></span><span class="crop br"></span>
+                    <div class="project-number">02</div>
+                    <h3 class="project-title">Portfolio de Dibujos 🖌️</h3>
+                    <p class="project-description">Biblioteca y galería interactiva para mostrar algunos dibujos digitales de un diseñador. Filtros por categoría y animaciones suaves. Optimizado para mostrar imágenes de alta calidad.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">HTML5</span>
+                        <span class="tech-tag">CSS3</span>
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">Responsive</span>
+                    </div>
+                    <a href="https://nicolaszgh.github.io/Smufful-Web/" target="_blank" class="project-link">Ver Proyecto <i class="bi bi-arrow-up-right"></i></a>
+                </div>
+
+                <div class="project-card">
+                    <span class="crop tl"></span><span class="crop tr"></span>
+                    <span class="crop bl"></span><span class="crop br"></span>
+                    <div class="project-number">03</div>
+                    <h3 class="project-title">Presentación de marca de café ☕</h3>
+                    <p class="project-description">Página básica para una cafetería donde muestra sus servicios e información a los usuarios.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">HTML5</span>
+                        <span class="tech-tag">CSS3</span>
+                        <span class="tech-tag">Responsive</span>
+                    </div>
+                    <a href="https://nicolaszgh.github.io/HTML5-CSS5-Page/" target="_blank" class="project-link">Ver Proyecto <i class="bi bi-arrow-up-right"></i></a>
+                </div>
+
+                <div class="project-card">
+                    <span class="crop tl"></span><span class="crop tr"></span>
+                    <span class="crop bl"></span><span class="crop br"></span>
+                    <div class="project-number">04</div>
+                    <h3 class="project-title">Presentación de marca de mates 🧉</h3>
+                    <p class="project-description">Página para una empresa de mates donde muestra sus servicios, productos e información a los usuarios.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">HTML5</span>
+                        <span class="tech-tag">CSS3</span>
+                        <span class="tech-tag">Responsive</span>
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">Bootstrap</span>
+                    </div>
+                    <a href="https://nicolaszgh.github.io/Boostrap-page/" target="_blank" class="project-link">Ver Proyecto <i class="bi bi-arrow-up-right"></i></a>
                 </div>
             </div>
         </div>
 
-        <div class="logo-card">
-            <div class="logo-image-wrapper">
-                <img src="logos/logo2.png" alt="NaturalisticPhotos - Fusión naturaleza y tipografía" class="logo-image">
-            </div>
-            <div class="logo-info">
-                <h3 class="logo-title">NaturalisticPhotos</h3>
-                <p class="logo-description">Logotipo orgánico donde una mariposa se transforma en la letra N mediante elementos naturales. Representa la conexión entre fotografía y ecología, con líneas fluidas que sugieren movimiento y vida.</p>
-                <div class="logo-tags">
-                    <span class="logo-tag">Biomórfico</span>
-                    <span class="logo-tag">Fusión</span>
-                    <span class="logo-tag">Natural</span>
-                    <span class="logo-tag">Fluidez</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="logo-card">
-            <div class="logo-image-wrapper">
-                <img src="logos/logo3.png" alt="CHM Producciones - Símbolo musical moderno" class="logo-image">
-            </div>
-            <div class="logo-info">
-                <h3 class="logo-title">CHM Producciones</h3>
-                <p class="logo-description">Imagotipo contemporáneo para producción musical que integra ondas sonoras con formas tipográficas. La dinámica visual sugiere ritmo y creatividad, ideal para un canal de radio moderno.</p>
-                <div class="logo-tags">
-                    <span class="logo-tag">Auditivo</span>
-                    <span class="logo-tag">Rítmico</span>
-                    <span class="logo-tag">Contemporáneo</span>
-                    <span class="logo-tag">Integrado</span>
-                </div>
-            </div>
-        </div>
-
-
-        <div class="logo-card">
-            <div class="logo-image-wrapper">
-                <img src="logos/logo4.png" alt="Fatal Blow - Logo urbano experimental" class="logo-image">
-            </div>
-            <div class="logo-info">
-                <h3 class="logo-title">Fatal Blow</h3>
-                <p class="logo-description">Identidad vanguardista para marca de streetwear que fusiona tipografía industrial con estética biotecnológica. El diseño sugiere resistencia, evolución y una actitud desafiante hacia las convenciones de moda.</p>
-                <div class="logo-tags">
-                    <span class="logo-tag">Bio-urbano</span>
-                    <span class="logo-tag">Experimental</span>
-                    <span class="logo-tag">Resiliencia</span>
-                    <span class="logo-tag">Transgresor</span>
-                </div>
-            </div>
-        </div>
-
-
-        <div class="logo-card">
-            <div class="logo-image-wrapper">
-                <img src="logos/logo5.png" alt="NZ - Marca personal minimalista" class="logo-image">
-            </div>
-            <div class="logo-info">
-                <h3 class="logo-title">NZ</h3>
-                <p class="logo-description">Isologo personal que sintetiza mi identidad profesional en formas geométricas puras. La integración perfecta de iniciales simboliza coherencia entre diseño y desarrollo, mientras que la simplicidad asegura versatilidad y memorabilidad.</p>
-                <div class="logo-tags">
-                    <span class="logo-tag">Marca Personal</span>
-                    <span class="logo-tag">Esencial</span>
-                    <span class="logo-tag">Versátil</span>
-                    <span class="logo-tag">Estructurado</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="logo-card">
-            <div class="logo-image-wrapper">
-                <img src="logos/logo6.png" alt="Foxsound - Identidad musical abstracta" class="logo-image">
-            </div>
-            <div class="logo-info">
-                <h3 class="logo-title">Foxsound</h3>
-                <p class="logo-description">Isotipo abstracto que transforma la silueta de un zorro en formas dinámicas que sugieren ondas sonoras y movimiento. Representa la fusión entre naturaleza y tecnología auditiva, ideal para un estudio que busca innovación sonora.</p>
-                <div class="logo-tags">
-                    <span class="logo-tag">Zoomórfico</span>
-                    <span class="logo-tag">Sónico</span>
-                    <span class="logo-tag">Metamorfosis</span>
-                    <span class="logo-tag">Innovación</span>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
+        <!-- CONTACTO -->
         <div class="contact-section" id="contacto">
+            <span class="crop tl"></span><span class="crop tr"></span>
+            <span class="crop bl"></span><span class="crop br"></span>
+            <span class="eyebrow section-eyebrow">Contacto</span>
             <h2>¿Interesado en trabajar juntos?</h2>
             <p>Me especializo en crear soluciones web personalizadas que impulsan el crecimiento de tu negocio</p>
             <div class="contact-info">
-                <div class="contact-item">
-                    <span>📧</span>
+                <a class="contact-item" href="mailto:nicolas.zorrilla.439@gmail.com">
+                    <i class="bi bi-envelope"></i>
                     <span>nicolas.zorrilla.439@gmail.com</span>
-                </div>
-                <div class="contact-item">
-                    <span>📱</span>
-                    <span>+54 9 364 441-9423</span>
-                </div>
-                <div class="contact-item">
-                    <span>🌐</span>
-                    <span>https://github.com/NicolasZGH</span>
-                </div>
+                </a>
+                <a class="contact-item" href="tel:+5491234567890">
+                    <i class="bi bi-telephone"></i>
+                    <span>+54 9 123 456-7890</span>
+                </a>
+                <a class="contact-item" href="https://github.com/NicolasZGH" target="_blank">
+                    <i class="bi bi-github"></i>
+                    <span>github.com/NicolasZGH</span>
+                </a>
             </div>
         </div>
     </div>
 
     <footer class="footer">
-        <p>&copy; 2025 Mi Portfolio. Todos los derechos reservados.</p>
+        <p>&copy; 2026 Nicolás Zorrilla — Todos los derechos reservados.</p>
     </footer>
 
 <script>
@@ -312,14 +401,13 @@
     });
 
     // ----------------------------
-    //  THEME TOGGLE (modo oscuro / claro)
+    //  THEME TOGGLE
     // ----------------------------
 
     const themeToggle = document.getElementById('themeToggle');
     const themeIcon = document.getElementById('themeIcon');
     const navbarLogo = document.getElementById('navbarLogo');
     const profilePicture = document.getElementById('profilePicture');
-
 
     function updateImages(theme) {
         if (theme === 'light') {
@@ -331,7 +419,6 @@
         }
     }
 
-    // Cambia el ícono del botón (sol ↔ luna)
     function updateThemeIcon() {
         if (document.body.classList.contains('light-mode')) {
             themeIcon.classList.replace("bi-brightness-high-fill", "bi-moon-fill");
@@ -340,7 +427,6 @@
         }
     }
 
-    // Verificar si hay un tema guardado
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme === 'light') {
         document.body.classList.add('light-mode');
@@ -349,12 +435,10 @@
         updateImages('dark');
     }
 
-    updateThemeIcon(); // Aplicar ícono correcto al cargar
+    updateThemeIcon();
 
-    // Cambiar tema al hacer clic
     themeToggle.addEventListener('click', () => {
         document.body.classList.toggle('light-mode');
-
         if (document.body.classList.contains('light-mode')) {
             updateImages('light');
             localStorage.setItem('theme', 'light');
@@ -362,9 +446,191 @@
             updateImages('dark');
             localStorage.setItem('theme', 'dark');
         }
-
-        updateThemeIcon(); // Cambiar icono
+        updateThemeIcon();
     });
+
+    // ----------------------------
+    //  CARRUSEL CIRCULAR CONTINUO (INFINITO)
+    // ----------------------------
+    (function () {
+        const track = document.getElementById('carouselTrack');
+        if (!track) return;
+
+        const prevBtn = document.getElementById('carouselPrev');
+        const nextBtn = document.getElementById('carouselNext');
+        const dotsContainer = document.getElementById('carouselDots');
+
+        const REAL_COUNT = 8;
+        const AUTOPLAY_MS = 5000;
+
+        let autoplayTimer = null;
+        let isAnimating = false;
+        let currentSlide = 0;
+
+        // --- Guardar referencia a todos los slides reales ---
+        const allSlides = track.querySelectorAll('.logo-card');
+        const totalSlides = allSlides.length;
+
+        // --- Crear puntos de navegación ---
+        const dots = [];
+        for (let i = 0; i < REAL_COUNT; i++) {
+            const dot = document.createElement('button');
+            dot.type = 'button';
+            dot.className = 'carousel-dot';
+            dot.setAttribute('aria-label', 'Ir al logotipo ' + (i + 1));
+            dot.addEventListener('click', () => {
+                goToSlide(i);
+                restartAutoplay();
+            });
+            dotsContainer.appendChild(dot);
+            dots.push(dot);
+        }
+
+        function getSlideWidth() {
+            const firstSlide = track.children[0];
+            if (!firstSlide) return 300;
+            const style = getComputedStyle(track);
+            const gap = parseFloat(style.columnGap || style.gap || '0') || 0;
+            return firstSlide.getBoundingClientRect().width + gap;
+        }
+
+        function goToSlide(index, smooth = true) {
+            if (isAnimating) return;
+            
+            // Asegurar que el índice esté dentro del rango real
+            currentSlide = ((index % REAL_COUNT) + REAL_COUNT) % REAL_COUNT;
+            
+            // Calculamos la posición exacta: índice + clones iniciales (3)
+            const targetIndex = currentSlide + 3;
+            const slideWidth = getSlideWidth();
+            
+            // Si estamos en el límite y necesitamos hacer el truco del bucle
+            if (targetIndex >= totalSlides - 3) {
+                // Vamos al final con animación
+                const scrollTarget = slideWidth * targetIndex;
+                track.scrollTo({ left: scrollTarget, behavior: smooth ? 'smooth' : 'auto' });
+                
+                // Después de la animación, reubicamos sin que se note
+                setTimeout(() => {
+                    const newIndex = ((currentSlide + 3) % REAL_COUNT) + 3;
+                    track.scrollTo({ left: slideWidth * newIndex, behavior: 'auto' });
+                    updateDots();
+                }, 500);
+            } else {
+                track.scrollTo({ left: slideWidth * targetIndex, behavior: smooth ? 'smooth' : 'auto' });
+                updateDots();
+            }
+        }
+
+        function nextSlide() {
+            if (isAnimating) return;
+            isAnimating = true;
+            
+            // Avanzar al siguiente slide real
+            currentSlide = (currentSlide + 1) % REAL_COUNT;
+            
+            const slideWidth = getSlideWidth();
+            const targetIndex = currentSlide + 3;
+            
+            // Si llegamos al final de los clones
+            if (targetIndex >= totalSlides - 3) {
+                // Ir al final con animación
+                track.scrollTo({ left: slideWidth * targetIndex, behavior: 'smooth' });
+                
+                // Después de la animación, saltar al inicio equivalente
+                setTimeout(() => {
+                    const newIndex = ((currentSlide + 3) % REAL_COUNT) + 3;
+                    track.scrollTo({ left: slideWidth * newIndex, behavior: 'auto' });
+                    updateDots();
+                    isAnimating = false;
+                }, 500);
+            } else {
+                track.scrollTo({ left: slideWidth * targetIndex, behavior: 'smooth' });
+                setTimeout(() => {
+                    updateDots();
+                    isAnimating = false;
+                }, 400);
+            }
+        }
+
+        function prevSlide() {
+            if (isAnimating) return;
+            isAnimating = true;
+            
+            currentSlide = ((currentSlide - 1) % REAL_COUNT + REAL_COUNT) % REAL_COUNT;
+            
+            const slideWidth = getSlideWidth();
+            const targetIndex = currentSlide + 3;
+            
+            // Si estamos al principio de los clones
+            if (targetIndex < 3) {
+                // Ir al principio con animación
+                track.scrollTo({ left: slideWidth * targetIndex, behavior: 'smooth' });
+                
+                setTimeout(() => {
+                    const newIndex = ((currentSlide + 3) % REAL_COUNT) + 3;
+                    track.scrollTo({ left: slideWidth * newIndex, behavior: 'auto' });
+                    updateDots();
+                    isAnimating = false;
+                }, 500);
+            } else {
+                track.scrollTo({ left: slideWidth * targetIndex, behavior: 'smooth' });
+                setTimeout(() => {
+                    updateDots();
+                    isAnimating = false;
+                }, 400);
+            }
+        }
+
+        function updateDots() {
+            dots.forEach((d, i) => d.classList.toggle('active', i === currentSlide));
+        }
+
+        function startAutoplay() {
+            stopAutoplay();
+            autoplayTimer = setInterval(() => {
+                nextSlide();
+            }, AUTOPLAY_MS);
+        }
+        
+        function stopAutoplay() {
+            clearInterval(autoplayTimer);
+        }
+        
+        function restartAutoplay() {
+            stopAutoplay();
+            startAutoplay();
+        }
+
+        // --- Eventos ---
+        nextBtn.addEventListener('click', () => {
+            nextSlide();
+            restartAutoplay();
+        });
+        
+        prevBtn.addEventListener('click', () => {
+            prevSlide();
+            restartAutoplay();
+        });
+
+        // Pausa al pasar el mouse
+        track.addEventListener('mouseenter', stopAutoplay);
+        track.addEventListener('mouseleave', startAutoplay);
+
+        // Inicializar
+        function init() {
+            const slideWidth = getSlideWidth();
+            track.scrollTo({ left: slideWidth * 3, behavior: 'auto' });
+            updateDots();
+            startAutoplay();
+        }
+
+        if (document.readyState === 'complete') {
+            init();
+        } else {
+            window.addEventListener('load', init);
+        }
+    })();
 </script>
 
 </body>
