@@ -9,7 +9,7 @@
     --border: rgba(243, 241, 236, 0.09);
     --text-primary: #F3F1EC;
     --text-secondary: #A6A4B3;
-    --text-muted: #6E6C7C;
+    --text-muted: #8B899A;
 
     --violet: #6E56CF;
     --violet-light: #9683E8;
@@ -37,7 +37,7 @@ body.light-mode {
     --border: rgba(14, 15, 19, 0.09);
     --text-primary: #14151A;
     --text-secondary: #55535F;
-    --text-muted: #8B899A;
+    --text-muted: #6E6C7C;
 
     --violet: #5A3FD1;
     --violet-light: #7A5FE0;
@@ -326,6 +326,10 @@ body.light-mode .navbar-cta:hover {
     flex-direction: column;
     cursor: pointer;
     gap: 5px;
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
 }
 
 .navbar-toggle span {
