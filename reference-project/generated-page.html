@@ -1,0 +1,430 @@
+<html lang="en"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Northline is the independent practice of Maya Chen, creating focused digital identities and websites for cultural, technical, and ambitious teams.">
+<title>Northline — Digital direction &amp; design</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+html { scroll-behavior: smooth; }
+body { font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+::selection { background: #c7ff39; color: #061008; }
+.noise {
+background-image:
+linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+linear-gradient(90deg, rgba(255,255,255,.02) 1px, transparent 1px);
+background-size: 44px 44px;
+}
+.reveal {
+opacity: 0;
+transform: translateY(1.5rem);
+transition: opacity 700ms cubic-bezier(.16,1,.3,1), transform 700ms cubic-bezier(.16,1,.3,1);
+}
+.reveal.is-visible { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: 80ms; }
+.reveal-delay-2 { transition-delay: 160ms; }
+.reveal-delay-3 { transition-delay: 240ms; }
+.faq-answer { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 220ms ease; }
+.faq-answer > div { overflow: hidden; }
+.faq-item[data-open="true"] .faq-answer { grid-template-rows: 1fr; }
+.faq-item[data-open="true"] .faq-icon { transform: rotate(45deg); }
+@media (prefers-reduced-motion: reduce) {
+html { scroll-behavior: auto; }
+.reveal { opacity: 1; transform: none; transition: none; }
+* { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+}
+</style>
+</head>
+<body class="bg-[#060807] text-[#f2f4ef] antialiased">
+  <header id="site-header" class="fixed inset-x-0 top-0 z-50 transition-all duration-200">
+    <div class="mx-auto flex h-20 max-w-7xl items-center justify-between px-5 lg:px-8">
+      <a href="#top" class="group inline-flex items-center gap-2 text-base font-semibold tracking-tight focus:outline-none focus:ring-2 focus:ring-[#c7ff39] focus:ring-offset-4 focus:ring-offset-[#060807]">
+        <svg class="h-6 w-6 text-[#c7ff39]" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M4 18V6l8 8 8-8v12" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter"></path>
+        </svg>
+        NORTHLINE<span class="text-[#c7ff39]">.</span>
+      </a>
+
+      <nav class="hidden items-center gap-7 md:flex" aria-label="Primary navigation">
+        <a class="nav-link text-sm text-zinc-400 transition hover:text-white focus:outline-none focus:text-[#c7ff39]" href="#work">Work</a>
+        <a class="nav-link text-sm text-zinc-400 transition hover:text-white focus:outline-none focus:text-[#c7ff39]" href="#services">Services</a>
+        <a class="nav-link text-sm text-zinc-400 transition hover:text-white focus:outline-none focus:text-[#c7ff39]" href="#process">Process</a>
+        <a class="nav-link text-sm text-zinc-400 transition hover:text-white focus:outline-none focus:text-[#c7ff39]" href="#about">About</a>
+      </nav>
+
+      <a href="#contact" class="hidden items-center gap-2 rounded-sm bg-[#c7ff39] px-4 py-2.5 text-sm font-semibold text-[#071008] transition hover:bg-[#e1ff8b] focus:outline-none focus:ring-2 focus:ring-white md:inline-flex">
+        Start a project <i data-lucide="arrow-up-right" class="h-4 w-4" stroke-width="1.5"></i>
+      </a>
+
+      <button id="menu-button" class="grid h-11 w-11 place-items-center border border-white/15 text-white md:hidden" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open navigation">
+        <i data-lucide="menu" class="h-5 w-5" stroke-width="1.5"></i>
+      </button>
+    </div>
+
+    <div id="mobile-menu" class="absolute inset-x-0 top-0 hidden min-h-screen bg-[#090b0a] px-5 pt-6 md:hidden">
+      <div class="flex items-center justify-between">
+        <span class="text-base font-semibold">NORTHLINE<span class="text-[#c7ff39]">.</span></span>
+        <button id="menu-close" class="grid h-11 w-11 place-items-center border border-white/15" aria-label="Close navigation">
+          <i data-lucide="x" class="h-5 w-5" stroke-width="1.5"></i>
+        </button>
+      </div>
+      <nav class="mt-16 flex flex-col border-t border-white/10" aria-label="Mobile navigation">
+        <a href="#work" class="mobile-link flex min-h-16 items-center justify-between border-b border-white/10 text-2xl font-medium tracking-tight">Work <i data-lucide="arrow-up-right" class="h-5 w-5 text-[#c7ff39]" stroke-width="1.5"></i></a>
+        <a href="#services" class="mobile-link flex min-h-16 items-center justify-between border-b border-white/10 text-2xl font-medium tracking-tight">Services <i data-lucide="arrow-up-right" class="h-5 w-5 text-[#c7ff39]" stroke-width="1.5"></i></a>
+        <a href="#process" class="mobile-link flex min-h-16 items-center justify-between border-b border-white/10 text-2xl font-medium tracking-tight">Process <i data-lucide="arrow-up-right" class="h-5 w-5 text-[#c7ff39]" stroke-width="1.5"></i></a>
+        <a href="#about" class="mobile-link flex min-h-16 items-center justify-between border-b border-white/10 text-2xl font-medium tracking-tight">About <i data-lucide="arrow-up-right" class="h-5 w-5 text-[#c7ff39]" stroke-width="1.5"></i></a>
+      </nav>
+      <a href="#contact" class="mobile-link mt-8 flex min-h-12 items-center justify-center gap-2 bg-[#c7ff39] px-5 text-sm font-semibold text-[#071008]">Start a project <i data-lucide="arrow-up-right" class="h-4 w-4" stroke-width="1.5"></i></a>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="noise relative min-h-screen overflow-hidden border-b border-white/10 pt-28">
+      <div class="absolute inset-x-0 top-0 h-[36rem] bg-[radial-gradient(ellipse_at_68%_17%,rgba(77,126,83,.24),transparent_48%)]"></div>
+      <div class="relative mx-auto flex min-h-[calc(100vh-7rem)] max-w-7xl flex-col justify-between px-5 pb-7 lg:px-8">
+        <div class="grid flex-1 items-center gap-10 py-12 lg:grid-cols-12 lg:gap-8">
+          <div class="lg:col-span-7">
+            <p class="reveal text-xs font-medium uppercase tracking-[0.18em] text-[#c7ff39]">Independent design practice · Amsterdam</p>
+            <h1 class="reveal reveal-delay-1 mt-6 max-w-4xl text-5xl font-medium leading-[0.94] tracking-tight text-white sm:text-7xl lg:text-8xl">
+              Digital work with a <span class="text-zinc-500">clear point of view.</span>
+            </h1>
+            <p class="reveal reveal-delay-2 mt-7 max-w-xl text-lg leading-relaxed text-zinc-300">
+              I partner with small teams and thoughtful founders to shape brands, websites, and product stories that feel inevitable.
+            </p>
+            <div class="reveal reveal-delay-3 mt-9 flex flex-wrap items-center gap-4">
+              <a href="#contact" class="inline-flex min-h-12 items-center gap-2 bg-[#c7ff39] px-5 text-sm font-semibold text-[#071008] transition hover:bg-[#e1ff8b] focus:outline-none focus:ring-2 focus:ring-white">
+                Discuss a project <i data-lucide="arrow-up-right" class="h-4 w-4" stroke-width="1.5"></i>
+              </a>
+              <a href="#work" class="inline-flex min-h-12 items-center gap-2 px-2 text-sm font-medium text-white transition hover:text-[#c7ff39] focus:outline-none focus:text-[#c7ff39]">
+                View selected work <i data-lucide="arrow-down" class="h-4 w-4" stroke-width="1.5"></i>
+              </a>
+            </div>
+          </div>
+
+          <div class="reveal reveal-delay-2 relative lg:col-span-5">
+            <div class="relative aspect-[4/5] overflow-hidden border border-white/10 bg-[#101411]">
+              <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/edf1ae4a-bdc2-4858-8003-d04cc2b9ff8f_3840w.png" alt="Close-up of a dark sculptural chrome object" class="h-full w-full object-cover grayscale brightness-75 transition duration-500 hover:scale-[1.03]">
+              <div class="absolute inset-0 bg-gradient-to-t from-[#060807]/80 via-transparent to-transparent"></div>
+              <div class="absolute bottom-5 left-5 right-5 flex items-end justify-between">
+                <div>
+                  <p class="text-xs uppercase tracking-[0.16em] text-[#c7ff39]">Now booking</p>
+                  <p class="mt-1 text-sm text-white">Q4 design partnerships</p>
+                </div>
+                <span class="grid h-10 w-10 place-items-center border border-white/20 bg-black/25 backdrop-blur-sm"><i data-lucide="arrow-up-right" class="h-4 w-4" stroke-width="1.5"></i></span>
+              </div>
+            </div>
+            <div class="absolute -bottom-4 -left-4 hidden border border-[#c7ff39]/40 bg-[#0c120d] px-4 py-3 text-xs text-zinc-300 lg:block">
+              <span class="mr-2 inline-block h-2 w-2 bg-[#c7ff39]"></span>Strategy · Identity · Digital
+            </div>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between border-t border-white/10 pt-5 text-xs text-zinc-500">
+          <span>Scroll to explore</span>
+          <span>01 / 07</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="border-b border-white/10 bg-[#0a0d0b]">
+      <div class="mx-auto max-w-7xl px-5 py-7 lg:px-8">
+        <div class="reveal grid gap-6 sm:grid-cols-3">
+          <div class="flex gap-3">
+            <span class="text-2xl font-medium tracking-tight text-[#c7ff39]">12</span>
+            <p class="pt-1 text-sm leading-relaxed text-zinc-400">years making useful, distinct digital experiences</p>
+          </div>
+          <div class="flex gap-3">
+            <span class="text-2xl font-medium tracking-tight text-[#c7ff39]">34</span>
+            <p class="pt-1 text-sm leading-relaxed text-zinc-400">launches across culture, climate, and technology</p>
+          </div>
+          <div class="flex gap-3">
+            <span class="text-2xl font-medium tracking-tight text-[#c7ff39]">1:1</span>
+            <p class="pt-1 text-sm leading-relaxed text-zinc-400">senior attention from first workshop to final handoff</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="work" class="mx-auto max-w-7xl px-5 py-24 lg:px-8 lg:py-32">
+      <div class="flex flex-wrap items-end justify-between gap-6">
+        <div class="reveal">
+          <p class="text-xs font-medium uppercase tracking-[0.18em] text-[#c7ff39]">Selected work</p>
+          <h2 class="mt-4 text-4xl font-medium tracking-tight sm:text-5xl">Made to be remembered.</h2>
+        </div>
+        <p class="reveal max-w-sm text-lg leading-relaxed text-zinc-400">A small collection of recent identities and digital releases built around real momentum.</p>
+      </div>
+
+      <div class="mt-14 grid gap-5 lg:grid-cols-2">
+        <a href="#contact" class="reveal group relative overflow-hidden border border-white/10 bg-[#0d100e] lg:col-span-2">
+          <div class="grid lg:grid-cols-[1.15fr_.85fr]">
+            <div class="relative aspect-[4/3] overflow-hidden lg:aspect-auto lg:min-h-[33rem]">
+              <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/f3a9e561-b7c1-45db-ab87-7eb9a9155beb_3840w.png" alt="Iridescent sculptural object for Aster House project" class="h-full w-full object-cover grayscale transition duration-500 group-hover:scale-[1.03] group-hover:grayscale-0">
+            </div>
+            <div class="flex flex-col justify-between p-6 sm:p-9">
+              <div class="flex items-center justify-between text-xs uppercase tracking-[0.15em] text-zinc-500">
+                <span>01 / Aster House</span><span>2025</span>
+              </div>
+              <div class="mt-20">
+                <p class="text-xs uppercase tracking-[0.16em] text-[#c7ff39]">Brand platform · Website</p>
+                <h3 class="mt-3 text-3xl font-medium tracking-tight sm:text-4xl">A home for ideas with momentum.</h3>
+                <p class="mt-4 max-w-md text-lg leading-relaxed text-zinc-400">A new editorial identity and flexible web system for a research-led urban development studio.</p>
+                <span class="mt-7 inline-flex items-center gap-2 text-sm font-medium text-white">View project <i data-lucide="arrow-up-right" class="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" stroke-width="1.5"></i></span>
+              </div>
+            </div>
+          </div>
+        </a>
+
+        <a href="#contact" class="reveal group overflow-hidden border border-white/10 bg-[#0d100e]">
+          <div class="aspect-[4/3] overflow-hidden">
+            <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/f8fd2334-59e6-46a0-b9cc-0722a9c55446_3840w.png" alt="Minimal dark mobile interface for Luma Finance project" class="h-full w-full object-cover grayscale transition duration-500 group-hover:scale-[1.04] group-hover:grayscale-0">
+          </div>
+          <div class="p-6">
+            <div class="flex items-center justify-between text-xs uppercase tracking-[0.15em] text-zinc-500"><span>02 / Luma</span><span>2024</span></div>
+            <h3 class="mt-7 text-2xl font-medium tracking-tight">Financial clarity for independent people.</h3>
+            <div class="mt-5 flex items-center justify-between text-sm text-zinc-400"><span>Product story · Design system</span><i data-lucide="arrow-up-right" class="h-4 w-4 text-[#c7ff39] transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" stroke-width="1.5"></i></div>
+          </div>
+        </a>
+
+        <a href="#contact" class="reveal reveal-delay-1 group overflow-hidden border border-white/10 bg-[#0d100e]">
+          <div class="aspect-[4/3] overflow-hidden">
+            <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/7d12d817-8a38-4664-a772-5b5b8e1b7cca_3840w.png" alt="Retro computer display with graphic interface for Field Notes project" class="h-full w-full object-cover grayscale transition duration-500 group-hover:scale-[1.04] group-hover:grayscale-0">
+          </div>
+          <div class="p-6">
+            <div class="flex items-center justify-between text-xs uppercase tracking-[0.15em] text-zinc-500"><span>03 / Field Notes</span><span>2024</span></div>
+            <h3 class="mt-7 text-2xl font-medium tracking-tight">An archive that invites participation.</h3>
+            <div class="mt-5 flex items-center justify-between text-sm text-zinc-400"><span>Identity · Digital archive</span><i data-lucide="arrow-up-right" class="h-4 w-4 text-[#c7ff39] transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" stroke-width="1.5"></i></div>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <section id="services" class="border-y border-white/10 bg-[#0a0d0b]">
+      <div class="mx-auto max-w-7xl px-5 py-24 lg:px-8 lg:py-32">
+        <div class="grid gap-14 lg:grid-cols-12">
+          <div class="reveal lg:col-span-5">
+            <p class="text-xs font-medium uppercase tracking-[0.18em] text-[#c7ff39]">What I do</p>
+            <h2 class="mt-4 text-4xl font-medium tracking-tight sm:text-5xl">Less noise.<br>More direction.</h2>
+            <p class="mt-6 max-w-md text-lg leading-relaxed text-zinc-400">The strongest outcomes come from making fewer, sharper decisions together.</p>
+          </div>
+          <div class="lg:col-span-7">
+            <article class="reveal group border-t border-white/15 py-7">
+              <div class="grid gap-5 sm:grid-cols-[5rem_1fr_auto]">
+                <p class="text-sm text-[#c7ff39]">01</p>
+                <div><h3 class="text-2xl font-medium tracking-tight">Position &amp; direction</h3><p class="mt-3 max-w-xl text-lg leading-relaxed text-zinc-400">A focused foundation: audience, offer, voice, and the principles that make every following choice easier.</p></div>
+                <i data-lucide="compass" class="h-5 w-5 text-zinc-500 transition group-hover:text-[#c7ff39]" stroke-width="1.5"></i>
+              </div>
+            </article>
+            <article class="reveal reveal-delay-1 group border-t border-white/15 py-7">
+              <div class="grid gap-5 sm:grid-cols-[5rem_1fr_auto]">
+                <p class="text-sm text-[#c7ff39]">02</p>
+                <div><h3 class="text-2xl font-medium tracking-tight">Identity systems</h3><p class="mt-3 max-w-xl text-lg leading-relaxed text-zinc-400">Visual languages with enough character to lead, and enough structure to work in the real world.</p></div>
+                <i data-lucide="shapes" class="h-5 w-5 text-zinc-500 transition group-hover:text-[#c7ff39]" stroke-width="1.5"></i>
+              </div>
+            </article>
+            <article class="reveal reveal-delay-2 group border-y border-white/15 py-7">
+              <div class="grid gap-5 sm:grid-cols-[5rem_1fr_auto]">
+                <p class="text-sm text-[#c7ff39]">03</p>
+                <div><h3 class="text-2xl font-medium tracking-tight">Web experiences</h3><p class="mt-3 max-w-xl text-lg leading-relaxed text-zinc-400">Narrative websites that create confidence, make a case, and give your team a practical platform for growth.</p></div>
+                <i data-lucide="panels-top-left" class="h-5 w-5 text-zinc-500 transition group-hover:text-[#c7ff39]" stroke-width="1.5"></i>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="process" class="mx-auto max-w-7xl px-5 py-24 lg:px-8 lg:py-32">
+      <div class="reveal max-w-2xl">
+        <p class="text-xs font-medium uppercase tracking-[0.18em] text-[#c7ff39]">The process</p>
+        <h2 class="mt-4 text-4xl font-medium tracking-tight sm:text-5xl">A calm route through complex work.</h2>
+      </div>
+
+      <div class="mt-14 grid border-l border-t border-white/15 md:grid-cols-3">
+        <article class="reveal border-b border-r border-white/15 p-6 sm:p-8">
+          <p class="text-sm text-[#c7ff39]">Step 01</p>
+          <div class="mt-16 grid h-12 w-12 place-items-center border border-white/20"><i data-lucide="search" class="h-5 w-5" stroke-width="1.5"></i></div>
+          <h3 class="mt-8 text-2xl font-medium tracking-tight">Find the signal</h3>
+          <p class="mt-4 text-lg leading-relaxed text-zinc-400">We align on the real challenge, map the audience, and identify the clearest route forward.</p>
+          <p class="mt-8 text-xs uppercase tracking-[0.14em] text-zinc-500">Output: project compass</p>
+        </article>
+        <article class="reveal reveal-delay-1 border-b border-r border-white/15 bg-[#0c120d] p-6 sm:p-8">
+          <p class="text-sm text-[#c7ff39]">Step 02</p>
+          <div class="mt-16 grid h-12 w-12 place-items-center border border-[#c7ff39]/40 bg-[#c7ff39]/10"><i data-lucide="pen-tool" class="h-5 w-5 text-[#c7ff39]" stroke-width="1.5"></i></div>
+          <h3 class="mt-8 text-2xl font-medium tracking-tight">Build the system</h3>
+          <p class="mt-4 text-lg leading-relaxed text-zinc-400">We turn direction into a living identity and experience, testing important decisions early.</p>
+          <p class="mt-8 text-xs uppercase tracking-[0.14em] text-zinc-500">Output: working prototype</p>
+        </article>
+        <article class="reveal reveal-delay-2 border-b border-r border-white/15 p-6 sm:p-8">
+          <p class="text-sm text-[#c7ff39]">Step 03</p>
+          <div class="mt-16 grid h-12 w-12 place-items-center border border-white/20"><i data-lucide="rocket" class="h-5 w-5" stroke-width="1.5"></i></div>
+          <h3 class="mt-8 text-2xl font-medium tracking-tight">Launch with care</h3>
+          <p class="mt-4 text-lg leading-relaxed text-zinc-400">We prepare the details that protect quality after launch: handoff, guidance, and a measured release.</p>
+          <p class="mt-8 text-xs uppercase tracking-[0.14em] text-zinc-500">Output: confident team</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="about" class="relative overflow-hidden border-y border-white/10 bg-[#0a0d0b]">
+      <div class="absolute right-0 top-0 h-full w-1/2 bg-[radial-gradient(ellipse_at_75%_50%,rgba(89,159,84,.17),transparent_60%)]"></div>
+      <div class="relative mx-auto grid max-w-7xl gap-12 px-5 py-24 lg:grid-cols-2 lg:px-8 lg:py-32">
+        <div class="reveal relative aspect-[4/5] overflow-hidden border border-white/10">
+          <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/f91d1b00-1830-4cb8-9e1b-fde333b129d1_3840w.png" alt="Portrait of Maya Chen, founder of Northline" class="h-full w-full object-cover grayscale brightness-75">
+          <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent p-6">
+            <p class="text-sm font-medium">Maya Chen</p>
+            <p class="mt-1 text-sm text-zinc-400">Creative director, Northline</p>
+          </div>
+        </div>
+        <div class="reveal self-center">
+          <p class="text-xs font-medium uppercase tracking-[0.18em] text-[#c7ff39]">A small practice by design</p>
+          <h2 class="mt-4 text-4xl font-medium tracking-tight sm:text-5xl">Senior thinking, close to the work.</h2>
+          <p class="mt-7 max-w-xl text-lg leading-relaxed text-zinc-300">Northline is led by Maya Chen, an independent creative director who brings in specialist collaborators only when the project needs them. That keeps decisions direct and the work connected from beginning to end.</p>
+          <blockquote class="mt-9 border-l border-[#c7ff39] pl-5 text-xl leading-relaxed text-white">“Maya gave us a language for what we were becoming — then made it feel completely tangible.”</blockquote>
+          <p class="mt-4 text-sm text-zinc-500">— Elin Berg, Founder at Aster House</p>
+          <a href="#contact" class="mt-9 inline-flex items-center gap-2 text-sm font-medium text-white transition hover:text-[#c7ff39] focus:outline-none focus:text-[#c7ff39]">Meet the practice <i data-lucide="arrow-right" class="h-4 w-4" stroke-width="1.5"></i></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="mx-auto max-w-4xl px-5 py-24 lg:py-32">
+      <div class="reveal text-center">
+        <p class="text-xs font-medium uppercase tracking-[0.18em] text-[#c7ff39]">Common questions</p>
+        <h2 class="mt-4 text-4xl font-medium tracking-tight sm:text-5xl">Before we begin.</h2>
+      </div>
+      <div class="mt-12 border-t border-white/15">
+        <div class="faq-item border-b border-white/15" data-open="false">
+          <button class="faq-trigger flex min-h-16 w-full items-center justify-between gap-5 py-5 text-left text-lg font-medium focus:outline-none focus:text-[#c7ff39]" aria-expanded="false">
+            What kinds of teams do you work with? <i data-lucide="plus" class="faq-icon h-5 w-5 shrink-0 transition-transform duration-200" stroke-width="1.5"></i>
+          </button>
+          <div class="faq-answer"><div><p class="pb-6 pr-10 text-lg leading-relaxed text-zinc-400">Usually small, committed teams with a meaningful shift ahead: a launch, a new offer, a repositioning, or a digital experience that needs more clarity.</p></div></div>
+        </div>
+        <div class="faq-item border-b border-white/15" data-open="false">
+          <button class="faq-trigger flex min-h-16 w-full items-center justify-between gap-5 py-5 text-left text-lg font-medium focus:outline-none focus:text-[#c7ff39]" aria-expanded="false">
+            How long does a typical engagement take? <i data-lucide="plus" class="faq-icon h-5 w-5 shrink-0 transition-transform duration-200" stroke-width="1.5"></i>
+          </button>
+          <div class="faq-answer"><div><p class="pb-6 pr-10 text-lg leading-relaxed text-zinc-400">Focused identity projects typically run six to eight weeks. Brand and website engagements usually take ten to fourteen weeks, depending on content and technical scope.</p></div></div>
+        </div>
+        <div class="faq-item border-b border-white/15" data-open="false">
+          <button class="faq-trigger flex min-h-16 w-full items-center justify-between gap-5 py-5 text-left text-lg font-medium focus:outline-none focus:text-[#c7ff39]" aria-expanded="false">
+            Can you join an existing team? <i data-lucide="plus" class="faq-icon h-5 w-5 shrink-0 transition-transform duration-200" stroke-width="1.5"></i>
+          </button>
+          <div class="faq-answer"><div><p class="pb-6 pr-10 text-lg leading-relaxed text-zinc-400">Yes. I often work alongside internal marketing, product, and engineering teams, bringing an outside perspective while respecting what is already working.</p></div></div>
+        </div>
+        <div class="faq-item border-b border-white/15" data-open="false">
+          <button class="faq-trigger flex min-h-16 w-full items-center justify-between gap-5 py-5 text-left text-lg font-medium focus:outline-none focus:text-[#c7ff39]" aria-expanded="false">
+            What should I bring to the first conversation? <i data-lucide="plus" class="faq-icon h-5 w-5 shrink-0 transition-transform duration-200" stroke-width="1.5"></i>
+          </button>
+          <div class="faq-answer"><div><p class="pb-6 pr-10 text-lg leading-relaxed text-zinc-400">A short description of where you are, what needs to change, and when you hope to move. A rough budget range is helpful, but not required for a first conversation.</p></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="relative overflow-hidden border-t border-white/10 bg-[#0a0d0b]">
+      <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_100%,rgba(82,188,76,.30),transparent_51%)]"></div>
+      <div class="relative mx-auto max-w-4xl px-5 py-24 text-center lg:py-32">
+        <p class="reveal text-xs font-medium uppercase tracking-[0.18em] text-[#c7ff39]">Start a conversation</p>
+        <h2 class="reveal reveal-delay-1 mt-5 text-5xl font-medium leading-[0.95] tracking-tight sm:text-7xl">Make the next move<br>feel obvious.</h2>
+        <p class="reveal reveal-delay-2 mx-auto mt-7 max-w-xl text-lg leading-relaxed text-zinc-300">Tell me what you are building, changing, or trying to make clearer. I will reply within two working days.</p>
+        <a href="mailto:hello@northline.studio" class="reveal reveal-delay-3 mt-10 inline-flex min-h-12 items-center gap-2 bg-[#c7ff39] px-6 text-sm font-semibold text-[#071008] transition hover:bg-[#e1ff8b] focus:outline-none focus:ring-2 focus:ring-white">
+          hello@northline.studio <i data-lucide="arrow-up-right" class="h-4 w-4" stroke-width="1.5"></i>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-white/10 bg-[#060807]">
+    <div class="mx-auto max-w-7xl px-5 py-12 lg:px-8">
+      <div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+        <div>
+          <p class="text-base font-semibold">NORTHLINE<span class="text-[#c7ff39]">.</span></p>
+          <p class="mt-3 max-w-xs text-sm leading-relaxed text-zinc-500">Independent direction and digital design for teams with something to say.</p>
+        </div>
+        <div>
+          <p class="text-xs uppercase tracking-[0.15em] text-zinc-500">Explore</p>
+          <div class="mt-4 flex flex-col gap-2 text-sm text-zinc-300"><a href="#work" class="hover:text-[#c7ff39]">Selected work</a><a href="#services" class="hover:text-[#c7ff39]">Services</a><a href="#process" class="hover:text-[#c7ff39]">Process</a></div>
+        </div>
+        <div>
+          <p class="text-xs uppercase tracking-[0.15em] text-zinc-500">Elsewhere</p>
+          <div class="mt-4 flex flex-col gap-2 text-sm text-zinc-300"><a href="#" class="hover:text-[#c7ff39]">Instagram</a><a href="#" class="hover:text-[#c7ff39]">LinkedIn</a><a href="mailto:hello@northline.studio" class="hover:text-[#c7ff39]">Email</a></div>
+        </div>
+        <div class="sm:text-right">
+          <p class="text-xs uppercase tracking-[0.15em] text-zinc-500">Based in</p>
+          <p class="mt-4 text-sm text-zinc-300">Amsterdam, NL<br>Working worldwide</p>
+        </div>
+      </div>
+      <div class="mt-14 flex flex-wrap justify-between gap-4 border-t border-white/10 pt-5 text-xs text-zinc-600">
+        <span>© 2026 Northline Studio</span><span>Built with considered restraint.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    lucide.createIcons({ attrs: { "stroke-width": 1.5 } });
+
+    const header = document.getElementById("site-header");
+    const updateHeader = () => {
+      header.classList.toggle("bg-[#080a09]/85", window.scrollY > 100);
+      header.classList.toggle("backdrop-blur-md", window.scrollY > 100);
+      header.classList.toggle("border-b", window.scrollY > 100);
+      header.classList.toggle("border-white/10", window.scrollY > 100);
+    };
+    window.addEventListener("scroll", updateHeader, { passive: true });
+    updateHeader();
+
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.14 });
+    document.querySelectorAll(".reveal").forEach((el) => revealObserver.observe(el));
+
+    const menuButton = document.getElementById("menu-button");
+    const menuClose = document.getElementById("menu-close");
+    const mobileMenu = document.getElementById("mobile-menu");
+    let lastFocused;
+
+    function openMenu() {
+      lastFocused = document.activeElement;
+      mobileMenu.classList.remove("hidden");
+      menuButton.setAttribute("aria-expanded", "true");
+      document.body.classList.add("overflow-hidden");
+      menuClose.focus();
+    }
+    function closeMenu() {
+      mobileMenu.classList.add("hidden");
+      menuButton.setAttribute("aria-expanded", "false");
+      document.body.classList.remove("overflow-hidden");
+      if (lastFocused) lastFocused.focus();
+    }
+    menuButton.addEventListener("click", openMenu);
+    menuClose.addEventListener("click", closeMenu);
+    document.querySelectorAll(".mobile-link").forEach((link) => link.addEventListener("click", closeMenu));
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && !mobileMenu.classList.contains("hidden")) closeMenu();
+    });
+
+    document.querySelectorAll(".faq-trigger").forEach((button) => {
+      button.addEventListener("click", () => {
+        const item = button.closest(".faq-item");
+        const open = item.dataset.open === "true";
+        document.querySelectorAll(".faq-item").forEach((other) => {
+          other.dataset.open = "false";
+          other.querySelector(".faq-trigger").setAttribute("aria-expanded", "false");
+        });
+        item.dataset.open = String(!open);
+        button.setAttribute("aria-expanded", String(!open));
+      });
+      button.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") {
+          const item = button.closest(".faq-item");
+          item.dataset.open = "false";
+          button.setAttribute("aria-expanded", "false");
+          button.focus();
+        }
+      });
+    });
+  </script>
+
+</body></html>

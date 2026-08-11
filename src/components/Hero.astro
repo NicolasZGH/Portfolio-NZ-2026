@@ -1,0 +1,119 @@
+---
+import { Image } from 'astro:assets';
+import { site, stats } from '../data/site';
+import ppLime from '../assets/brand/pp-lime.png';
+import ppViolet from '../assets/brand/pp-violet.png';
+---
+
+<section id="inicio" class="relative scroll-mt-24 overflow-hidden pt-[70px]" aria-label="Presentación">
+  <!-- ambient glow -->
+  <div
+    class="pointer-events-none absolute inset-x-0 top-0 h-[34rem] opacity-70"
+    style="background: radial-gradient(ellipse at 72% 12%, rgba(110,86,207,0.20), transparent 52%), radial-gradient(ellipse at 12% 30%, rgba(215,255,63,0.07), transparent 44%);"
+    aria-hidden="true"
+  >
+  </div>
+
+  <div class="relative mx-auto max-w-[1240px] px-5 pb-6 pt-10 lg:px-8">
+    <div
+      class="crop-host crop-always grid-field relative overflow-hidden rounded-lg border border-line p-6 sm:p-10 lg:p-14"
+      style="animation: fade-up 0.9s var(--ease-out-expo) both;"
+    >
+      <span class="crop crop-tl"></span><span class="crop crop-tr"></span>
+      <span class="crop crop-bl"></span><span class="crop crop-br"></span>
+
+      <div class="grid items-center gap-10 lg:grid-cols-12 lg:gap-8">
+        <!-- text -->
+        <div class="lg:col-span-7">
+          <p class="eyebrow reveal">Portfolio — {site.year} · {site.location}</p>
+
+          <h1 class="reveal reveal-d1 mt-6 text-[clamp(2.6rem,7vw,5rem)] font-semibold leading-[0.95]">
+            <span class="text-flow">Nicolás<br />Zorrilla</span>
+          </h1>
+
+          <p class="reveal reveal-d2 mt-6 max-w-xl text-lg leading-relaxed text-secondary">
+            {site.tagline}. Diseño con criterio y front-end que se siente inevitable.
+          </p>
+
+          <div class="reveal reveal-d3 mt-5 inline-flex items-center gap-2.5 rounded-full border border-lime/30 bg-lime/10 px-4 py-2 font-mono text-xs text-accent">
+            <span class="h-[7px] w-[7px] rounded-full bg-lime" style="animation: var(--animate-blink);"></span>
+            Disponible para proyectos
+          </div>
+
+          <div class="reveal reveal-d3 mt-8 flex flex-wrap items-center gap-4">
+            <a
+              href="#proyectos"
+              class="magnetic inline-flex min-h-12 items-center gap-2 rounded-sm bg-lime px-5 text-sm font-semibold text-lime-ink transition-[background,transform] hover:-translate-y-0.5"
+            >
+              Ver proyectos
+              <svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" aria-hidden="true"
+                ><path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" /></svg>
+            </a>
+            <a
+              href="#contacto"
+              class="inline-flex min-h-12 items-center gap-2 px-2 text-sm font-medium text-primary transition-colors hover:text-accent"
+            >
+              Trabajemos juntos
+              <svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" aria-hidden="true"
+                ><path d="M7 17L17 7M17 7H9M17 7v8" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" /></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- profile visual -->
+        <div class="reveal reveal-d2 relative lg:col-span-5">
+          <div class="relative mx-auto aspect-square w-[240px] sm:w-[300px]">
+            <div
+              class="absolute inset-0 rounded-full border border-dashed border-violet-light"
+              style="animation: var(--animate-spin-slow);"
+              aria-hidden="true"
+            >
+            </div>
+            <div class="tilt absolute inset-[14px] overflow-hidden rounded-full border border-line-strong">
+              <Image
+                src={ppLime}
+                alt={`Foto de perfil de ${site.name}`}
+                widths={[240, 300, 600]}
+                sizes="300px"
+                loading="eager"
+                fetchpriority="high"
+                class="h-full w-full object-cover light:hidden"
+              />
+              <Image
+                src={ppViolet}
+                alt=""
+                aria-hidden="true"
+                widths={[240, 300, 600]}
+                sizes="300px"
+                loading="eager"
+                class="hidden h-full w-full object-cover light:block"
+              />
+            </div>
+            <div
+              class="absolute -bottom-2 left-1/2 -translate-x-1/2 whitespace-nowrap border border-lime/40 bg-surface px-3 py-1.5 font-mono text-[0.65rem] text-secondary"
+            >
+              <span class="mr-2 inline-block h-2 w-2 bg-lime align-middle"></span>Diseño · UI/UX · Front-end
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- stats -->
+      <div class="reveal reveal-d3 mt-12 grid grid-cols-2 gap-px overflow-hidden rounded-md border border-line bg-line sm:grid-cols-4">
+        {
+          stats.map((s) => (
+            <div class="bg-surface px-4 py-5 text-center transition-colors hover:bg-surface-2">
+              <div class="font-display text-3xl font-bold text-primary">{s.value}</div>
+              <div class="mt-1 font-mono text-[0.65rem] uppercase tracking-[0.08em] text-muted">{s.label}</div>
+            </div>
+          ))
+        }
+      </div>
+
+      <div class="mt-8 flex items-center justify-between border-t border-line pt-5 font-mono text-xs text-muted">
+        <span>Scroll para explorar</span>
+        <span>N.01°</span>
+      </div>
+    </div>
+  </div>
+</section>

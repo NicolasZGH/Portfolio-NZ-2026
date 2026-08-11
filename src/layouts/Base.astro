@@ -1,0 +1,76 @@
+---
+import '@fontsource-variable/bricolage-grotesque';
+import '@fontsource-variable/inter';
+import '@fontsource-variable/jetbrains-mono';
+import '../styles/global.css';
+import { site } from '../data/site';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { title = `${site.name} — ${site.role}`, description = site.description } = Astro.props;
+const base = import.meta.env.BASE_URL;
+const canonical = site.url;
+const ogImage = new URL('favicon.png', canonical + '/').href;
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: site.name,
+  jobTitle: 'Diseñador gráfico y desarrollador front-end',
+  url: canonical,
+  email: `mailto:${site.email}`,
+  sameAs: [site.github],
+  address: { '@type': 'PostalAddress', addressCountry: 'AR' },
+};
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href={canonical} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="theme-color" content="#0a0b0e" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#f4f2ec" media="(prefers-color-scheme: light)" />
+
+    <link rel="icon" type="image/png" href={`${base}favicon.png`} />
+    <link rel="icon" type="image/x-icon" href={`${base}favicon.ico`} />
+
+    <!-- No-flash theme: runs before paint -->
+    <script is:inline>
+      (() => {
+        try {
+          const stored = localStorage.getItem('theme');
+          const theme = stored || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+          document.documentElement.setAttribute('data-theme', theme);
+        } catch (_) {
+          document.documentElement.setAttribute('data-theme', 'dark');
+        }
+      })();
+    </script>
+
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  </head>
+  <body>
+    <a
+      href="#main"
+      class="sr-only fixed left-4 top-4 z-[10000] rounded-sm bg-lime px-4 py-2 font-mono text-sm font-semibold text-lime-ink focus:not-sr-only"
+    >
+      Saltar al contenido
+    </a>
+    <slot />
+  </body>
+</html>
