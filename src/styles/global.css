@@ -180,6 +180,12 @@
   .crop-host:focus-within .crop { opacity: 1; transform: scale(1); }
   .crop-always .crop { opacity: 1; transform: scale(1); border-color: var(--c-violet-light); }
 
+  /* Carousel edge fade — neighbours dissolve into the page instead of hard-cut */
+  .carousel-fade {
+    -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 11%, #000 89%, transparent 100%);
+    mask-image: linear-gradient(90deg, transparent 0, #000 11%, #000 89%, transparent 100%);
+  }
+
   /* Carousel dots — 24px touch target, small visual pill inside */
   .carousel-dot {
     width: 24px;
