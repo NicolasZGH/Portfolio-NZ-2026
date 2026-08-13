@@ -486,6 +486,57 @@ function initDotField() {
   }
 }
 
+/* ============================================================
+   Modal / lightbox de logos
+   Click en un logo → se abre ampliado. Cierra con ✕, click afuera o Esc.
+   Se ejecuta después del carrusel para cubrir también las tarjetas clon.
+   ============================================================ */
+function initLogoModal() {
+  const modal = document.getElementById('logo-modal');
+  const modalImage = document.getElementById('logo-modal-image');
+  if (!modal || !modalImage) return;
+  const closeButton = modal.querySelector('.logo-modal__close');
+  let opener = null; // para devolver el foco al cerrar
+
+  const openModal = (img) => {
+    if (!img) return;
+    modalImage.src = img.currentSrc || img.src;
+    modalImage.alt = img.alt || 'Logotipo ampliado';
+    modal.classList.add('is-open');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('modal-open');
+    opener = img;
+    closeButton && closeButton.focus();
+  };
+
+  const closeModal = () => {
+    modal.classList.remove('is-open');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('modal-open');
+    modalImage.src = '';
+    if (opener) { opener.focus(); opener = null; }
+  };
+
+  document.querySelectorAll('.logo-slide img').forEach((img) => {
+    img.addEventListener('click', () => openModal(img));
+    // solo las tarjetas reales (no los clones aria-hidden) son enfocables/teclado
+    if (!img.closest('[aria-hidden="true"]')) {
+      img.setAttribute('tabindex', '0');
+      img.setAttribute('role', 'button');
+      img.setAttribute('aria-label', 'Ampliar logotipo');
+      img.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openModal(img); }
+      });
+    }
+  });
+
+  closeButton && closeButton.addEventListener('click', closeModal);
+  modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.classList.contains('is-open')) closeModal();
+  });
+}
+
 /* ---------- Arranque ---------- */
 initTheme();
 initHeader();
@@ -495,4 +546,5 @@ initMagnetic();
 initTilt();
 initCursorGlow();
 initCarousel();
+initLogoModal(); // después del carrusel: cubre también las tarjetas clon
 initDotField();

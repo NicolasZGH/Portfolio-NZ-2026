@@ -317,6 +317,86 @@
       }
 
       /* ============================================================
+         MODAL / LIGHTBOX DE LOGOS
+         Al hacer click en un logo se abre ampliado. Colores según tema.
+         ============================================================ */
+      .logo-slide img { cursor: pointer; }
+
+      .logo-modal {
+        position: fixed;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1.5rem;
+        background: color-mix(in srgb, var(--c-ink) 82%, transparent);
+        -webkit-backdrop-filter: blur(8px);
+        backdrop-filter: blur(8px);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.2s ease;
+        z-index: 1000;
+      }
+      .logo-modal.is-open { opacity: 1; pointer-events: auto; }
+
+      .logo-modal__panel {
+        position: relative;
+        max-width: min(92vw, 1200px);
+        max-height: 92vh;
+        display: grid;
+        place-items: center;
+        background: var(--c-surface);
+        border: 1px solid var(--c-border-strong);
+        border-radius: var(--radius-md);
+        padding: 1rem;
+        box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
+        transform: scale(0.96);
+        transition: transform 0.2s var(--ease-out-expo);
+      }
+      .logo-modal.is-open .logo-modal__panel { transform: scale(1); }
+
+      .logo-modal__image {
+        display: block;
+        max-width: 100%;
+        max-height: 88vh;
+        width: auto;
+        height: auto;
+        object-fit: contain;
+        border-radius: var(--radius-sm);
+      }
+
+      .logo-modal__close {
+        position: absolute;
+        top: 0.75rem;
+        right: 0.75rem;
+        width: 2.5rem;
+        height: 2.5rem;
+        display: grid;
+        place-items: center;
+        border: 1px solid var(--c-border-strong);
+        border-radius: 999px;
+        background: var(--c-surface-2);
+        color: var(--c-text-primary);
+        font-size: 1.4rem;
+        line-height: 1;
+        cursor: pointer;
+        transition: border-color 0.2s, background 0.2s;
+      }
+      .logo-modal__close:hover { border-color: var(--c-lime); }
+
+      body.modal-open { overflow: hidden; }
+
+      /* Ajustes móviles (heredados) */
+      @media (max-width: 767px) {
+        /* ocultar chips de etiquetas de los logos en pantallas chicas */
+        #logos .logo-slide .flex-wrap { display: none; }
+      }
+      @media (max-width: 560px) {
+        /* mostrar las flechas del carrusel también en móvil */
+        .carousel-arrow { display: grid !important; }
+      }
+
+      /* ============================================================
          APARICIÓN AL HACER SCROLL
          ============================================================ */
       .reveal {
@@ -893,6 +973,14 @@
     <footer class="border-t border-line py-10 text-center">
       <p class="font-mono text-[0.78rem] text-muted">© 2026 Nicolás Zorrilla — Todos los derechos reservados.</p>
     </footer>
+
+    <!-- Modal para ver los logotipos ampliados (se abre al hacer click en un logo) -->
+    <div id="logo-modal" class="logo-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Logotipo ampliado">
+      <div class="logo-modal__panel">
+        <button type="button" class="logo-modal__close" aria-label="Cerrar imagen ampliada">&times;</button>
+        <img id="logo-modal-image" class="logo-modal__image" src="" alt="Vista ampliada del logotipo" />
+      </div>
+    </div>
 
     <!-- Toda la interactividad (tema, menú, carrusel, efectos) -->
     <script src="script.js"></script>
