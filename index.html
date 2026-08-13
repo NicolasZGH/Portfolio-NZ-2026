@@ -1,0 +1,895 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nicolás Zorrilla — Diseñador gráfico · UI/UX · Front-end</title>
+    <meta
+      name="description"
+      content="Portafolio de Nicolás Zorrilla, diseñador gráfico y desarrollador front-end. Logotipos, identidad de marca y proyectos web responsive."
+    />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://dgonzalez211.github.io/Portfolio-NZ" />
+
+    <!-- Open Graph / redes sociales -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Nicolás Zorrilla — Diseñador gráfico · UI/UX · Front-end" />
+    <meta
+      property="og:description"
+      content="Logotipos, identidad de marca y proyectos web responsive."
+    />
+    <meta property="og:url" content="https://dgonzalez211.github.io/Portfolio-NZ" />
+    <meta property="og:image" content="https://dgonzalez211.github.io/Portfolio-NZ/assets/favicon.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="theme-color" content="#0a0b0e" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#f4f2ec" media="(prefers-color-scheme: light)" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/favicon.png" />
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+
+    <!-- Fuentes (Google Fonts) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Inter:wght@400..700&family=JetBrains+Mono:wght@400..600&display=swap"
+      rel="stylesheet"
+    />
+
+    <!--
+      Tema sin parpadeo: corre antes de pintar la página.
+      Lee el tema guardado o usa la preferencia del sistema.
+    -->
+    <script>
+      (() => {
+        try {
+          const stored = localStorage.getItem('theme');
+          const theme =
+            stored ||
+            (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+          document.documentElement.setAttribute('data-theme', theme);
+        } catch (_) {
+          document.documentElement.setAttribute('data-theme', 'dark');
+        }
+      })();
+    </script>
+
+    <!-- Tailwind CSS (build de navegador, sin paso de compilación) -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <!--
+      ============================================================
+      ESTILOS DE DISEÑO
+      Este bloque lo procesa Tailwind en el navegador. Aquí viven
+      la paleta de colores (tema claro/oscuro), las fuentes y las
+      clases propias del sitio. Editá colores en :root de abajo.
+      ============================================================
+    -->
+    <style type="text/tailwindcss">
+      @import 'tailwindcss';
+
+      /* Oscuro es el tema por defecto. El claro se activa con [data-theme="light"] en <html>. */
+      @custom-variant light (&:where([data-theme="light"] *));
+
+      /* ============================================================
+         PALETA — cambia con el tema mediante variables CSS
+         ============================================================ */
+      :root {
+        --c-ink: #0a0b0e;
+        --c-surface: #14151c;
+        --c-surface-2: #1b1d27;
+        --c-border: rgba(243, 241, 236, 0.09);
+        --c-border-strong: rgba(243, 241, 236, 0.16);
+        --c-text-primary: #f3f1ec;
+        --c-text-secondary: #a6a4b3;
+        --c-text-muted: #83818f;
+        --c-violet: #6e56cf;
+        --c-violet-light: #9683e8;
+        --c-lime: #d7ff3f;
+        --c-lime-ink: #0a0b0e;
+        --c-accent: #d7ff3f;
+        --c-eyebrow: #9683e8;
+        --c-tag: #9683e8;
+
+        --grid-line: rgba(255, 255, 255, 0.025);
+        --glass: rgba(10, 11, 14, 0.6);
+        --glass-scrolled: rgba(10, 11, 14, 0.82);
+
+        color-scheme: dark;
+      }
+
+      :root[data-theme='light'] {
+        --c-ink: #f4f2ec;
+        --c-surface: #ffffff;
+        --c-surface-2: #faf9f4;
+        --c-border: rgba(14, 15, 19, 0.1);
+        --c-border-strong: rgba(14, 15, 19, 0.18);
+        --c-text-primary: #14151a;
+        --c-text-secondary: #55535f;
+        --c-text-muted: #6e6c7c;
+        --c-violet: #5a3fd1;
+        --c-violet-light: #7a5fe0;
+        --c-lime: #94b400;
+        --c-lime-ink: #0a0b0e;
+        --c-accent: #4c6a00;
+        --c-eyebrow: #5a3fd1;
+        --c-tag: #5039b8;
+
+        --grid-line: rgba(14, 15, 19, 0.04);
+        --glass: rgba(244, 242, 236, 0.65);
+        --glass-scrolled: rgba(255, 255, 255, 0.88);
+
+        color-scheme: light;
+      }
+
+      /* ============================================================
+         TEMA DE TAILWIND — mapea utilidades a las variables
+         ============================================================ */
+      @theme {
+        --color-ink: var(--c-ink);
+        --color-surface: var(--c-surface);
+        --color-surface-2: var(--c-surface-2);
+        --color-line: var(--c-border);
+        --color-line-strong: var(--c-border-strong);
+        --color-primary: var(--c-text-primary);
+        --color-secondary: var(--c-text-secondary);
+        --color-muted: var(--c-text-muted);
+        --color-violet: var(--c-violet);
+        --color-violet-light: var(--c-violet-light);
+        --color-lime: var(--c-lime);
+        --color-lime-ink: var(--c-lime-ink);
+        --color-accent: var(--c-accent);
+        --color-tag: var(--c-tag);
+
+        --font-display: 'Bricolage Grotesque', ui-sans-serif, system-ui, sans-serif;
+        --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
+        --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+        --radius-xs: 6px;
+        --radius-sm: 10px;
+        --radius-md: 16px;
+        --radius-lg: 26px;
+
+        --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+
+        --animate-spin-slow: spin 22s linear infinite;
+        --animate-blink: blink 2.4s ease-in-out infinite;
+        --animate-gradient: gradient-flow 6s ease infinite;
+      }
+
+      /* ============================================================
+         BASE
+         ============================================================ */
+      @layer base {
+        * {
+          border-color: var(--c-border);
+        }
+        html {
+          scroll-behavior: smooth;
+          -webkit-text-size-adjust: 100%;
+        }
+        body {
+          font-family: var(--font-sans, sans-serif);
+          background: var(--c-ink);
+          color: var(--c-text-secondary);
+          line-height: 1.6;
+          overflow-x: hidden;
+          transition: background 0.4s var(--ease-out-expo), color 0.4s var(--ease-out-expo);
+          -webkit-font-smoothing: antialiased;
+          text-rendering: optimizeLegibility;
+        }
+        h1, h2, h3, h4 {
+          font-family: var(--font-display, sans-serif);
+          color: var(--c-text-primary);
+          letter-spacing: -0.02em;
+          font-weight: 600;
+        }
+        ::selection {
+          background: var(--c-lime);
+          color: var(--c-lime-ink);
+        }
+        :focus-visible {
+          outline: 2px solid var(--c-lime);
+          outline-offset: 3px;
+          border-radius: 2px;
+        }
+      }
+
+      /* ============================================================
+         UTILIDADES PROPIAS DEL SITIO
+         ============================================================ */
+      @layer components {
+        /* Grilla editorial de fondo */
+        .grid-field {
+          background-image:
+            linear-gradient(var(--grid-line) 1px, transparent 1px),
+            linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+          background-size: 46px 46px;
+        }
+
+        /* Eyebrow: texto mono en mayúsculas con punto lima */
+        .eyebrow {
+          font-family: var(--font-mono, monospace);
+          text-transform: uppercase;
+          letter-spacing: 0.18em;
+          font-size: 0.72rem;
+          font-weight: 600;
+          color: var(--c-eyebrow);
+          display: inline-flex;
+          align-items: center;
+          gap: 0.55rem;
+        }
+        .eyebrow::before {
+          content: '';
+          width: 7px;
+          height: 7px;
+          background: var(--c-lime);
+          flex-shrink: 0;
+        }
+
+        /* Marcas de recorte — detalle de encuadre */
+        .crop {
+          position: absolute;
+          width: 16px;
+          height: 16px;
+          pointer-events: none;
+          opacity: 0;
+          transform: scale(0.6);
+          transition: opacity 0.35s var(--ease-out-expo), transform 0.35s var(--ease-out-expo);
+          z-index: 3;
+        }
+        .crop-tl { top: -1px; left: -1px; border-top: 2px solid var(--c-lime); border-left: 2px solid var(--c-lime); }
+        .crop-tr { top: -1px; right: -1px; border-top: 2px solid var(--c-lime); border-right: 2px solid var(--c-lime); }
+        .crop-bl { bottom: -1px; left: -1px; border-bottom: 2px solid var(--c-lime); border-left: 2px solid var(--c-lime); }
+        .crop-br { bottom: -1px; right: -1px; border-bottom: 2px solid var(--c-lime); border-right: 2px solid var(--c-lime); }
+        .crop-host:hover .crop,
+        .crop-host:focus-within .crop { opacity: 1; transform: scale(1); }
+        .crop-always .crop { opacity: 1; transform: scale(1); border-color: var(--c-violet-light); }
+
+        /* Difuminado en los bordes del carrusel */
+        .carousel-fade {
+          -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 11%, #000 89%, transparent 100%);
+          mask-image: linear-gradient(90deg, transparent 0, #000 11%, #000 89%, transparent 100%);
+        }
+
+        /* Puntos del carrusel */
+        .carousel-dot {
+          width: 24px;
+          height: 24px;
+          display: grid;
+          place-items: center;
+          border: none;
+          padding: 0;
+          background: transparent;
+          cursor: pointer;
+        }
+        .carousel-dot::before {
+          content: '';
+          width: 8px;
+          height: 8px;
+          border-radius: 50%;
+          background: var(--c-border-strong);
+          transition: width 0.3s var(--ease-out-expo), background 0.3s var(--ease-out-expo), border-radius 0.3s var(--ease-out-expo);
+        }
+        .carousel-dot.is-active::before {
+          width: 22px;
+          border-radius: 4px;
+          background: var(--c-lime);
+        }
+
+        /* Estados del header (efecto vidrio al hacer scroll) */
+        [data-header] {
+          background: transparent;
+        }
+        [data-header].is-scrolled {
+          background: var(--glass-scrolled);
+          -webkit-backdrop-filter: blur(14px);
+          backdrop-filter: blur(14px);
+          border-bottom-color: var(--c-border);
+        }
+
+        /* Resplandor que sigue al cursor */
+        .cursor-glow {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 300px;
+          height: 300px;
+          border-radius: 50%;
+          pointer-events: none;
+          z-index: 0;
+          opacity: 0;
+          transform: translate3d(-50%, -50%, 0);
+          background: radial-gradient(circle, color-mix(in srgb, var(--c-violet-light) 10%, transparent) 0%, transparent 66%);
+          transition: opacity 0.4s ease;
+          will-change: left, top;
+        }
+
+        /* Texto con degradado animado */
+        .text-flow {
+          background: linear-gradient(100deg, var(--c-text-primary) 0%, var(--c-violet-light) 45%, var(--c-lime) 65%, var(--c-text-primary) 100%);
+          background-size: 220% auto;
+          -webkit-background-clip: text;
+          background-clip: text;
+          color: transparent;
+          animation: var(--animate-gradient);
+        }
+      }
+
+      /* ============================================================
+         APARICIÓN AL HACER SCROLL
+         ============================================================ */
+      .reveal {
+        opacity: 0;
+        transform: translateY(1.4rem);
+        transition: opacity 0.7s var(--ease-out-expo), transform 0.7s var(--ease-out-expo);
+        will-change: opacity, transform;
+      }
+      .reveal[data-dir='left'] { transform: translateX(-1.6rem); }
+      .reveal[data-dir='right'] { transform: translateX(1.6rem); }
+      .reveal[data-dir='scale'] { transform: scale(0.94); }
+      .reveal.is-visible { opacity: 1; transform: none; }
+      .reveal-d1 { transition-delay: 90ms; }
+      .reveal-d2 { transition-delay: 180ms; }
+      .reveal-d3 { transition-delay: 270ms; }
+      .reveal-d4 { transition-delay: 360ms; }
+
+      /* ============================================================
+         ANIMACIONES (keyframes)
+         ============================================================ */
+      @keyframes spin { to { transform: rotate(360deg); } }
+      @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.25; } }
+      @keyframes gradient-flow { 0%, 100% { background-position: 0% center; } 50% { background-position: 100% center; } }
+      @keyframes fade-up {
+        from { opacity: 0; transform: translateY(26px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+
+      /* ============================================================
+         MOVIMIENTO REDUCIDO (accesibilidad)
+         ============================================================ */
+      @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+        .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+        *, *::before, *::after {
+          animation-duration: 0.001ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.001ms !important;
+        }
+      }
+    </style>
+
+    <!-- Datos estructurados para buscadores (SEO) -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Nicolás Zorrilla",
+        "jobTitle": "Diseñador gráfico y desarrollador front-end",
+        "url": "https://dgonzalez211.github.io/Portfolio-NZ",
+        "email": "mailto:nicolas.zorrilla.439@gmail.com",
+        "sameAs": ["https://github.com/NicolasZGH"],
+        "address": { "@type": "PostalAddress", "addressCountry": "AR" }
+      }
+    </script>
+  </head>
+
+  <body>
+    <!-- Enlace de accesibilidad para saltar al contenido -->
+    <a
+      href="#main"
+      class="sr-only fixed left-4 top-4 z-[10000] rounded-sm bg-lime px-4 py-2 font-mono text-sm font-semibold text-lime-ink focus:not-sr-only"
+    >
+      Saltar al contenido
+    </a>
+
+    <!-- =========================================================
+         HEADER / BARRA DE NAVEGACIÓN
+         ========================================================= -->
+    <header
+      id="site-header"
+      class="fixed inset-x-0 top-0 z-50 border-b border-transparent transition-[background,border-color,backdrop-filter] duration-300"
+      data-header
+    >
+      <div class="mx-auto flex h-[70px] max-w-[1240px] items-center justify-between px-5 lg:px-8">
+        <!-- Logo / marca -->
+        <a href="#inicio" class="group inline-flex items-center gap-3 focus:outline-none" aria-label="Nicolás Zorrilla — inicio">
+          <span class="grid h-9 w-9 place-items-center rounded-[9px] border border-line-strong bg-surface transition-colors group-hover:border-lime">
+            <svg viewBox="0 0 24 24" class="h-5 w-5 text-accent" fill="none" aria-hidden="true">
+              <path d="M5 19V5l14 14V5" stroke="currentColor" stroke-width="1.7" stroke-linecap="square" />
+            </svg>
+          </span>
+          <span class="font-mono text-[0.7rem] font-semibold uppercase leading-[1.2] tracking-[0.06em] text-primary">
+            Nicolás<br />Zorrilla
+          </span>
+        </a>
+
+        <!-- Navegación de escritorio -->
+        <nav class="hidden items-center gap-8 md:flex" aria-label="Navegación principal">
+          <a href="#inicio" class="nav-link group inline-flex items-center gap-1.5 font-mono text-[0.85rem] text-secondary transition-colors hover:text-primary">
+            <span class="text-[0.72rem] text-accent">01</span>Inicio
+          </a>
+          <a href="#logos" class="nav-link group inline-flex items-center gap-1.5 font-mono text-[0.85rem] text-secondary transition-colors hover:text-primary">
+            <span class="text-[0.72rem] text-accent">02</span>Logotipos
+          </a>
+          <a href="#proyectos" class="nav-link group inline-flex items-center gap-1.5 font-mono text-[0.85rem] text-secondary transition-colors hover:text-primary">
+            <span class="text-[0.72rem] text-accent">03</span>Proyectos
+          </a>
+          <a href="#contacto" class="nav-link group inline-flex items-center gap-1.5 font-mono text-[0.85rem] text-secondary transition-colors hover:text-primary">
+            <span class="text-[0.72rem] text-accent">04</span>Contacto
+          </a>
+        </nav>
+
+        <div class="flex items-center gap-2.5">
+          <a
+            href="#contacto"
+            class="magnetic hidden items-center gap-2 rounded-sm bg-lime px-4 py-2.5 text-sm font-semibold text-lime-ink transition-[background,transform] hover:-translate-y-0.5 md:inline-flex"
+          >
+            Trabajemos juntos
+            <svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" aria-hidden="true">
+              <path d="M7 17L17 7M17 7H9M17 7v8" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </a>
+
+          <!-- Botón de tema claro/oscuro -->
+          <button
+            type="button"
+            id="theme-toggle"
+            class="grid h-10 w-10 place-items-center rounded-[10px] border border-line-strong bg-surface text-primary transition-colors hover:border-lime"
+            aria-label="Cambiar tema"
+          >
+            <svg class="h-5 w-5 light:hidden" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" />
+            </svg>
+            <svg class="hidden h-5 w-5 light:block" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.6" />
+              <path d="M12 2v2M12 20v2M4 12H2M22 12h-2M5.6 5.6 4.2 4.2M19.8 19.8l-1.4-1.4M18.4 5.6l1.4-1.4M4.2 19.8l1.4-1.4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+            </svg>
+          </button>
+
+          <!-- Botón menú móvil -->
+          <button
+            type="button"
+            id="menu-open"
+            class="grid h-10 w-10 place-items-center rounded-[10px] border border-line-strong text-primary md:hidden"
+            aria-label="Abrir menú"
+            aria-expanded="false"
+            aria-controls="mobile-menu"
+          >
+            <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Menú móvil (pantalla completa) -->
+    <div id="mobile-menu" class="fixed inset-0 z-[60] hidden translate-y-0 bg-ink px-5 pt-5 md:hidden" aria-hidden="true">
+      <div class="flex items-center justify-between">
+        <span class="font-mono text-[0.7rem] font-semibold uppercase tracking-[0.06em] text-primary">Nicolás Zorrilla</span>
+        <button
+          type="button"
+          id="menu-close"
+          class="grid h-10 w-10 place-items-center rounded-[10px] border border-line-strong text-primary"
+          aria-label="Cerrar menú"
+        >
+          <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" />
+          </svg>
+        </button>
+      </div>
+      <nav class="mt-14 flex flex-col border-t border-line" aria-label="Navegación móvil">
+        <a href="#inicio" class="mobile-link flex min-h-16 items-center justify-between border-b border-line text-2xl font-medium tracking-tight text-primary">
+          <span class="flex items-center gap-3"><span class="font-mono text-sm text-accent">01</span>Inicio</span>
+          <svg viewBox="0 0 24 24" class="h-5 w-5 text-accent" fill="none" aria-hidden="true"><path d="M7 17L17 7M17 7H9M17 7v8" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" /></svg>
+        </a>
+        <a href="#logos" class="mobile-link flex min-h-16 items-center justify-between border-b border-line text-2xl font-medium tracking-tight text-primary">
+          <span class="flex items-center gap-3"><span class="font-mono text-sm text-accent">02</span>Logotipos</span>
+          <svg viewBox="0 0 24 24" class="h-5 w-5 text-accent" fill="none" aria-hidden="true"><path d="M7 17L17 7M17 7H9M17 7v8" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" /></svg>
+        </a>
+        <a href="#proyectos" class="mobile-link flex min-h-16 items-center justify-between border-b border-line text-2xl font-medium tracking-tight text-primary">
+          <span class="flex items-center gap-3"><span class="font-mono text-sm text-accent">03</span>Proyectos</span>
+          <svg viewBox="0 0 24 24" class="h-5 w-5 text-accent" fill="none" aria-hidden="true"><path d="M7 17L17 7M17 7H9M17 7v8" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" /></svg>
+        </a>
+        <a href="#contacto" class="mobile-link flex min-h-16 items-center justify-between border-b border-line text-2xl font-medium tracking-tight text-primary">
+          <span class="flex items-center gap-3"><span class="font-mono text-sm text-accent">04</span>Contacto</span>
+          <svg viewBox="0 0 24 24" class="h-5 w-5 text-accent" fill="none" aria-hidden="true"><path d="M7 17L17 7M17 7H9M17 7v8" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" /></svg>
+        </a>
+      </nav>
+      <a href="#contacto" class="mobile-link mt-8 flex min-h-12 items-center justify-center gap-2 rounded-sm bg-lime px-5 text-sm font-semibold text-lime-ink">
+        Trabajemos juntos
+        <svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" aria-hidden="true"><path d="M7 17L17 7M17 7H9M17 7v8" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" /></svg>
+      </a>
+    </div>
+
+    <main id="main" class="relative">
+      <!-- =========================================================
+           HERO / PRESENTACIÓN
+           ========================================================= -->
+      <section id="inicio" class="relative scroll-mt-24 overflow-hidden pt-[70px]" aria-label="Presentación">
+        <!-- Resplandor ambiental -->
+        <div
+          class="pointer-events-none absolute inset-x-0 top-0 h-[34rem] opacity-70"
+          style="background: radial-gradient(ellipse at 72% 12%, rgba(110,86,207,0.20), transparent 52%), radial-gradient(ellipse at 12% 30%, rgba(215,255,63,0.07), transparent 44%);"
+          aria-hidden="true"
+        ></div>
+
+        <div class="relative mx-auto max-w-[1240px] px-5 pb-6 pt-10 lg:px-8">
+          <div
+            class="crop-host crop-always grid-field relative overflow-hidden rounded-lg border border-line p-6 sm:p-10 lg:p-14"
+            style="animation: fade-up 0.9s var(--ease-out-expo) both;"
+          >
+            <span class="crop crop-tl"></span><span class="crop crop-tr"></span>
+            <span class="crop crop-bl"></span><span class="crop crop-br"></span>
+
+            <div class="grid items-center gap-10 lg:grid-cols-12 lg:gap-8">
+              <!-- Texto -->
+              <div class="lg:col-span-7">
+                <p class="eyebrow reveal">Portfolio — 2026 · Argentina</p>
+
+                <h1 class="reveal reveal-d1 mt-6 text-[clamp(2.6rem,7vw,5rem)] font-semibold leading-[0.95]">
+                  <span class="text-flow">Nicolás<br />Zorrilla</span>
+                </h1>
+
+                <p class="reveal reveal-d2 mt-6 max-w-xl text-lg leading-relaxed text-secondary">
+                  Diseñador gráfico, UI/UX Designer y Desarrollador Front-end. Diseño con criterio y front-end que se siente inevitable.
+                </p>
+
+                <div class="reveal reveal-d3 mt-5 inline-flex items-center gap-2.5 rounded-full border border-lime/30 bg-lime/10 px-4 py-2 font-mono text-xs text-accent">
+                  <span class="h-[7px] w-[7px] rounded-full bg-lime" style="animation: var(--animate-blink);"></span>
+                  Disponible para proyectos
+                </div>
+
+                <div class="reveal reveal-d3 mt-8 flex flex-wrap items-center gap-4">
+                  <a
+                    href="#proyectos"
+                    class="magnetic inline-flex min-h-12 items-center gap-2 rounded-sm bg-lime px-5 text-sm font-semibold text-lime-ink transition-[background,transform] hover:-translate-y-0.5"
+                  >
+                    Ver proyectos
+                    <svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" aria-hidden="true"><path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" /></svg>
+                  </a>
+                  <a
+                    href="#contacto"
+                    class="inline-flex min-h-12 items-center gap-2 px-2 text-sm font-medium text-primary transition-colors hover:text-accent"
+                  >
+                    Trabajemos juntos
+                    <svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" aria-hidden="true"><path d="M7 17L17 7M17 7H9M17 7v8" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" /></svg>
+                  </a>
+                </div>
+              </div>
+
+              <!-- Foto de perfil -->
+              <div class="reveal reveal-d2 relative lg:col-span-5">
+                <div class="relative mx-auto aspect-square w-[240px] sm:w-[300px]">
+                  <div class="absolute inset-0 rounded-full border border-dashed border-violet-light" style="animation: var(--animate-spin-slow);" aria-hidden="true"></div>
+                  <div class="tilt absolute inset-[14px] overflow-hidden rounded-full border border-line-strong">
+                    <img src="assets/pp-lime.webp" alt="Foto de perfil de Nicolás Zorrilla" width="300" height="300" fetchpriority="high" class="h-full w-full object-cover light:hidden" />
+                    <img src="assets/pp-violet.webp" alt="" aria-hidden="true" width="300" height="300" class="hidden h-full w-full object-cover light:block" />
+                  </div>
+                  <div class="absolute -bottom-2 left-1/2 -translate-x-1/2 whitespace-nowrap border border-lime/40 bg-surface px-3 py-1.5 font-mono text-[0.65rem] text-secondary">
+                    <span class="mr-2 inline-block h-2 w-2 bg-lime align-middle"></span>Diseño · UI/UX · Front-end
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Estadísticas -->
+            <div class="reveal reveal-d3 mt-12 grid grid-cols-2 gap-px overflow-hidden rounded-md border border-line bg-line sm:grid-cols-4">
+              <div class="bg-surface px-4 py-5 text-center transition-colors hover:bg-surface-2">
+                <div class="font-display text-3xl font-bold text-primary">20+</div>
+                <div class="mt-1 font-mono text-[0.65rem] uppercase tracking-[0.08em] text-muted">Logotipos</div>
+              </div>
+              <div class="bg-surface px-4 py-5 text-center transition-colors hover:bg-surface-2">
+                <div class="font-display text-3xl font-bold text-primary">4+</div>
+                <div class="mt-1 font-mono text-[0.65rem] uppercase tracking-[0.08em] text-muted">Proyectos</div>
+              </div>
+              <div class="bg-surface px-4 py-5 text-center transition-colors hover:bg-surface-2">
+                <div class="font-display text-3xl font-bold text-primary">100%</div>
+                <div class="mt-1 font-mono text-[0.65rem] uppercase tracking-[0.08em] text-muted">Responsive</div>
+              </div>
+              <div class="bg-surface px-4 py-5 text-center transition-colors hover:bg-surface-2">
+                <div class="font-display text-3xl font-bold text-primary">5+</div>
+                <div class="mt-1 font-mono text-[0.65rem] uppercase tracking-[0.08em] text-muted">Tecnologías</div>
+              </div>
+            </div>
+
+            <div class="mt-8 flex items-center justify-between border-t border-line pt-5 font-mono text-xs text-muted">
+              <span>Scroll para explorar</span>
+              <span>N.01°</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           LOGOTIPOS (carrusel)
+           Para editar un logo: cambiá la imagen, el título, el
+           número (ID / 0X) y las etiquetas de cada <article>.
+           El color de las etiquetas se define en style="background:..."
+           ========================================================= -->
+      <section id="logos" class="scroll-mt-24 border-t border-line py-20 lg:py-28" aria-labelledby="logos-heading">
+        <div class="mx-auto max-w-[1240px] px-5 lg:px-8">
+          <div class="reveal mx-auto max-w-2xl text-center">
+            <p class="eyebrow justify-center">Identidad visual</p>
+            <h2 id="logos-heading" class="mt-4 text-[clamp(1.9rem,4vw,2.7rem)]">Logotipos creados</h2>
+            <p class="mt-3 text-secondary">Donde la creatividad se encuentra con la estrategia de marca.</p>
+          </div>
+
+          <div class="reveal reveal-d1 mt-12">
+            <div class="carousel relative flex items-center gap-3" data-carousel>
+              <button
+                type="button"
+                class="carousel-arrow grid h-11 w-11 flex-none place-items-center rounded-full border border-line-strong bg-surface text-primary transition-[background,border-color,transform] hover:scale-105 hover:border-violet hover:bg-violet hover:text-white max-[560px]:hidden"
+                data-prev
+                aria-label="Logo anterior"
+              >
+                <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" aria-hidden="true"><path d="M15 6l-6 6 6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg>
+              </button>
+
+              <div class="carousel-fade min-w-0 flex-1 overflow-hidden" data-viewport>
+                <div class="flex gap-6 will-change-transform" data-track role="region" aria-roledescription="carrusel" aria-label="Logotipos creados" tabindex="0">
+                  <!--
+                    Nota: las 2 primeras y 2 últimas tarjetas se DUPLICAN por
+                    JavaScript para lograr el bucle infinito. Vos solo editás
+                    las 8 tarjetas reales de aquí abajo.
+                  -->
+                  <article class="crop-host logo-slide relative w-[clamp(260px,68vw,560px)] flex-none rounded-md border border-line bg-surface p-4 pb-6 text-center transition-[transform,border-color,background] duration-300 hover:-translate-y-1.5 hover:border-violet-light hover:bg-surface-2" aria-label="Gabinete Astral">
+                    <span class="crop crop-tl"></span><span class="crop crop-tr"></span><span class="crop crop-bl"></span><span class="crop crop-br"></span>
+                    <span class="absolute left-5 top-4 font-mono text-[0.7rem] tracking-[0.05em] text-muted">ID / 01</span>
+                    <div class="mb-4 mt-7 overflow-hidden rounded-sm">
+                      <img src="assets/logos/gabinete.webp" alt="Gabinete Astral" loading="lazy" class="block h-auto w-full select-none rounded-[10px]" draggable="false" />
+                    </div>
+                    <div class="flex flex-wrap justify-center gap-1.5">
+                      <span class="rounded-xs px-2.5 py-1 font-mono text-[0.72rem] font-medium text-white" style="background:linear-gradient(135deg,#586493,#7380b3)">Monograma</span>
+                      <span class="rounded-xs px-2.5 py-1 font-mono text-[0.72rem] font-medium text-white" style="background:linear-gradient(135deg,#586493,#7380b3)">Precisión</span>
+                      <span class="rounded-xs px-2.5 py-1 font-mono text-[0.72rem] font-medium text-white" style="background:linear-gradient(135deg,#586493,#7380b3)">Corporativo</span>
+                      <span class="rounded-xs px-2.5 py-1 font-mono text-[0.72rem] font-medium text-white" style="background:linear-gradient(135deg,#586493,#7380b3)">Abstracción</span>
+                    </div>
+                  </article>
+
+                  <article class="crop-host logo-slide relative w-[clamp(260px,68vw,560px)] flex-none rounded-md border border-line bg-surface p-4 pb-6 text-center transition-[transform,border-color,background] duration-300 hover:-translate-y-1.5 hover:border-violet-light hover:bg-surface-2" aria-label="NaturalisticPhotos">
+                    <span class="crop crop-tl"></span><span class="crop crop-tr"></span><span class="crop crop-bl"></span><span class="crop crop-br"></span>
+                    <span class="absolute left-5 top-4 font-mono text-[0.7rem] tracking-[0.05em] text-muted">ID / 02</span>
+                    <div class="mb-4 mt-7 overflow-hidden rounded-sm">
+                      <img src="assets/logos/naturalistic.webp" alt="NaturalisticPhotos" loading="lazy" class="block h-auto w-full select-none rounded-[10px]" draggable="false" />
+                    </div>
+                    <div class="flex flex-wrap justify-center gap-1.5">
+                      <span class="rounded-xs px-2.5 py-1 font-mono text-[0.72rem] font-medium text-white" style="background:linear-gradient(135deg,#2f9e44,#4cb95e)">Biomórfico</span>
+                      <span class="rounded-xs px-2.5 py-1 font-mono text-[0.72rem] font-medium text-white" style="background:linear-gradient(135deg,#2f9e44,#4cb95e)">Fusión</span>
+                      <span class="rounded-xs px-2.5 py-1 font-mono text-[0.72rem] font-medium text-white" style="background:linear-gradient(135deg,#2f9e44,#4cb95e)">Natural</span>
+                      <span class="rounded-xs px-2.5 py-1 font-mono text-[0.72rem] font-medium text-white" style="background:linear-gradient(135deg,#2f9e44,#4cb95e)">Fluidez</span>
+                    </div>
+                  </article>
+
+                  <article class="crop-host logo-slide relative w-[clamp(260px,68vw,560px)] flex-none rounded-md border border-line bg-surface p-4 pb-6 text-center transition-[transform,border-color,background] duration-300 hover:-translate-y-1.5 hover:border-violet-light hover:bg-surface-2" aria-label="CHM Producciones">
+                    <span class="crop crop-tl"></span><span class="crop crop-tr"></span><span class="crop crop-bl"></span><span class="crop crop-br"></span>
+                    <span class="absolute left-5 top-4 font-mono text-[0.7rem] tracking-[0.05em] text-muted">ID / 03</span>
+                    <div class="mb-4 mt-7 overflow-hidden rounded-sm">
+                      <img src="assets/logos/chm.webp" alt="CHM Producciones" loading="lazy" class="block h-auto w-full select-none rounded-[10px]" draggable="false" />
+                    </div>
+                    <div class="flex flex-wrap justify-center gap-1.5">
+                      <span class="rounded-xs px-2.5 py-1 font-mono text-[0.72rem] font-medium text-white" style="background:linear-gradient(135deg,#00a2d3,#12c6f3)">Auditivo</span>
+                      <span class="rounded-xs px-2.5 py-1 font-mono text-[0.72rem] font-medium text-white" style="background:linear-gradient(135deg,#00a2d3,#12c6f3)">Rítmico</span>
+                      <span class="rounded-xs px-2.5 py-1 font-mono text-[0.72rem] font-medium text-white" style="background:linear-gradient(135deg,#00a2d3,#12c6f3)">Contemporáneo</span>
+                      <span class="rounded-xs px-2.5 py-1 font-mono text-[0.72rem] font-medium text-white" style="background:linear-gradient(135deg,#00a2d3,#12c6f3)">Integrado</span>
+                    </div>
+                  </article>
+
+                  <article class="crop-host logo-slide relative w-[clamp(260px,68vw,560px)] flex-none rounded-md border border-line bg-surface p-4 pb-6 text-center transition-[transform,border-color,background] duration-300 hover:-translate-y-1.5 hover:border-violet-light hover:bg-surface-2" aria-label="Fatal Blow">
+                    <span class="crop crop-tl"></span><span class="crop crop-tr"></span><span class="crop crop-bl"></span><span class="crop crop-br"></span>
+                    <span class="absolute left-5 top-4 font-mono text-[0.7rem] tracking-[0.05em] text-muted">ID / 04</span>
+                    <div class="mb-4 mt-7 overflow-hidden rounded-sm">
+                      <img src="assets/logos/fatal.webp" alt="Fatal Blow" loading="lazy" class="block h-auto w-full select-none rounded-[10px]" draggable="false" />
+                    </div>
+                    <div class="flex flex-wrap justify-center gap-1.5">
+                      <span class="rounded-xs px-2.5 py-1 font-mono text-[0.72rem] font-medium text-white" style="background:linear-gradient(135deg,#9e3f2e,#d63b3b)">Bio-urbano</span>
+                      <span class="rounded-xs px-2.5 py-1 font-mono text-[0.72rem] font-medium text-white" style="background:linear-gradient(135deg,#9e3f2e,#d63b3b)">Experimental</span>
+                      <span class="rounded-xs px-2.5 py-1 font-mono text-[0.72rem] font-medium text-white" style="background:linear-gradient(135deg,#9e3f2e,#d63b3b)">Resiliencia</span>
+                      <span class="rounded-xs px-2.5 py-1 font-mono text-[0.72rem] font-medium text-white" style="background:linear-gradient(135deg,#9e3f2e,#d63b3b)">Transgresor</span>
+                    </div>
+                  </article>
+
+                  <article class="crop-host logo-slide relative w-[clamp(260px,68vw,560px)] flex-none rounded-md border border-line bg-surface p-4 pb-6 text-center transition-[transform,border-color,background] duration-300 hover:-translate-y-1.5 hover:border-violet-light hover:bg-surface-2" aria-label="NZ">
+                    <span class="crop crop-tl"></span><span class="crop crop-tr"></span><span class="crop crop-bl"></span><span class="crop crop-br"></span>
+                    <span class="absolute left-5 top-4 font-mono text-[0.7rem] tracking-[0.05em] text-muted">ID / 05</span>
+                    <div class="mb-4 mt-7 overflow-hidden rounded-sm">
+                      <img src="assets/logos/nz.webp" alt="NZ" loading="lazy" class="block h-auto w-full select-none rounded-[10px]" draggable="false" />
+                    </div>
+                    <div class="flex flex-wrap justify-center gap-1.5">
+                      <span class="rounded-xs px-2.5 py-1 font-mono text-[0.72rem] font-medium text-white" style="background:linear-gradient(135deg,#6e56cf,#9683e8)">Marca Personal</span>
+                      <span class="rounded-xs px-2.5 py-1 font-mono text-[0.72rem] font-medium text-white" style="background:linear-gradient(135deg,#6e56cf,#9683e8)">Esencial</span>
+                      <span class="rounded-xs px-2.5 py-1 font-mono text-[0.72rem] font-medium text-white" style="background:linear-gradient(135deg,#6e56cf,#9683e8)">Versátil</span>
+                      <span class="rounded-xs px-2.5 py-1 font-mono text-[0.72rem] font-medium text-white" style="background:linear-gradient(135deg,#6e56cf,#9683e8)">Estructurado</span>
+                    </div>
+                  </article>
+
+                  <article class="crop-host logo-slide relative w-[clamp(260px,68vw,560px)] flex-none rounded-md border border-line bg-surface p-4 pb-6 text-center transition-[transform,border-color,background] duration-300 hover:-translate-y-1.5 hover:border-violet-light hover:bg-surface-2" aria-label="Reddish">
+                    <span class="crop crop-tl"></span><span class="crop crop-tr"></span><span class="crop crop-bl"></span><span class="crop crop-br"></span>
+                    <span class="absolute left-5 top-4 font-mono text-[0.7rem] tracking-[0.05em] text-muted">ID / 06</span>
+                    <div class="mb-4 mt-7 overflow-hidden rounded-sm">
+                      <img src="assets/logos/reddish.webp" alt="Reddish" loading="lazy" class="block h-auto w-full select-none rounded-[10px]" draggable="false" />
+                    </div>
+                    <div class="flex flex-wrap justify-center gap-1.5">
+                      <span class="rounded-xs px-2.5 py-1 font-mono text-[0.72rem] font-medium text-white" style="background:linear-gradient(135deg,#d6336c,#ff5c8a)">Intenso</span>
+                      <span class="rounded-xs px-2.5 py-1 font-mono text-[0.72rem] font-medium text-white" style="background:linear-gradient(135deg,#d6336c,#ff5c8a)">Rebelde</span>
+                      <span class="rounded-xs px-2.5 py-1 font-mono text-[0.72rem] font-medium text-white" style="background:linear-gradient(135deg,#d6336c,#ff5c8a)">Dramático</span>
+                      <span class="rounded-xs px-2.5 py-1 font-mono text-[0.72rem] font-medium text-white" style="background:linear-gradient(135deg,#d6336c,#ff5c8a)">Juguetón</span>
+                    </div>
+                  </article>
+
+                  <article class="crop-host logo-slide relative w-[clamp(260px,68vw,560px)] flex-none rounded-md border border-line bg-surface p-4 pb-6 text-center transition-[transform,border-color,background] duration-300 hover:-translate-y-1.5 hover:border-violet-light hover:bg-surface-2" aria-label="OndiPuri">
+                    <span class="crop crop-tl"></span><span class="crop crop-tr"></span><span class="crop crop-bl"></span><span class="crop crop-br"></span>
+                    <span class="absolute left-5 top-4 font-mono text-[0.7rem] tracking-[0.05em] text-muted">ID / 07</span>
+                    <div class="mb-4 mt-7 overflow-hidden rounded-sm">
+                      <img src="assets/logos/ondipuri.webp" alt="OndiPuri" loading="lazy" class="block h-auto w-full select-none rounded-[10px]" draggable="false" />
+                    </div>
+                    <div class="flex flex-wrap justify-center gap-1.5">
+                      <span class="rounded-xs px-2.5 py-1 font-mono text-[0.72rem] font-medium text-white" style="background:linear-gradient(135deg,#da0a94,#4fd1e8)">Alegre</span>
+                      <span class="rounded-xs px-2.5 py-1 font-mono text-[0.72rem] font-medium text-white" style="background:linear-gradient(135deg,#da0a94,#4fd1e8)">Tierno</span>
+                      <span class="rounded-xs px-2.5 py-1 font-mono text-[0.72rem] font-medium text-white" style="background:linear-gradient(135deg,#da0a94,#4fd1e8)">Creativo</span>
+                      <span class="rounded-xs px-2.5 py-1 font-mono text-[0.72rem] font-medium text-white" style="background:linear-gradient(135deg,#da0a94,#4fd1e8)">Divertido</span>
+                    </div>
+                  </article>
+
+                  <article class="crop-host logo-slide relative w-[clamp(260px,68vw,560px)] flex-none rounded-md border border-line bg-surface p-4 pb-6 text-center transition-[transform,border-color,background] duration-300 hover:-translate-y-1.5 hover:border-violet-light hover:bg-surface-2" aria-label="CrackheadKatz">
+                    <span class="crop crop-tl"></span><span class="crop crop-tr"></span><span class="crop crop-bl"></span><span class="crop crop-br"></span>
+                    <span class="absolute left-5 top-4 font-mono text-[0.7rem] tracking-[0.05em] text-muted">ID / 08</span>
+                    <div class="mb-4 mt-7 overflow-hidden rounded-sm">
+                      <img src="assets/logos/crackheadkatz.webp" alt="CrackheadKatz" loading="lazy" class="block h-auto w-full select-none rounded-[10px]" draggable="false" />
+                    </div>
+                    <div class="flex flex-wrap justify-center gap-1.5">
+                      <span class="rounded-xs px-2.5 py-1 font-mono text-[0.72rem] font-medium text-white" style="background:linear-gradient(135deg,#37c92a,#13e80c)">Urbano</span>
+                      <span class="rounded-xs px-2.5 py-1 font-mono text-[0.72rem] font-medium text-white" style="background:linear-gradient(135deg,#37c92a,#13e80c)">Rebelde</span>
+                      <span class="rounded-xs px-2.5 py-1 font-mono text-[0.72rem] font-medium text-white" style="background:linear-gradient(135deg,#37c92a,#13e80c)">Gamer</span>
+                      <span class="rounded-xs px-2.5 py-1 font-mono text-[0.72rem] font-medium text-white" style="background:linear-gradient(135deg,#37c92a,#13e80c)">Llamativo</span>
+                    </div>
+                  </article>
+                </div>
+              </div>
+
+              <button
+                type="button"
+                class="carousel-arrow grid h-11 w-11 flex-none place-items-center rounded-full border border-line-strong bg-surface text-primary transition-[background,border-color,transform] hover:scale-105 hover:border-violet hover:bg-violet hover:text-white max-[560px]:hidden"
+                data-next
+                aria-label="Logo siguiente"
+              >
+                <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" aria-hidden="true"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg>
+              </button>
+            </div>
+
+            <div class="mt-7 flex justify-center gap-2.5" data-dots aria-hidden="true"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           PROYECTOS
+           Para editar: cambiá número, título, descripción, las
+           etiquetas de tecnología y el enlace (href) de cada uno.
+           ========================================================= -->
+      <section id="proyectos" class="scroll-mt-24 border-t border-line py-20 lg:py-28" aria-labelledby="proyectos-heading">
+        <div class="mx-auto max-w-[1240px] px-5 lg:px-8">
+          <div class="reveal mx-auto max-w-2xl text-center">
+            <p class="eyebrow justify-center">Desarrollo web</p>
+            <h2 id="proyectos-heading" class="mt-4 text-[clamp(1.9rem,4vw,2.7rem)]">Proyectos</h2>
+            <p class="mt-3 text-secondary">Front-end aplicado a casos reales.</p>
+          </div>
+
+          <div class="mt-12 grid gap-5 sm:grid-cols-2">
+            <article class="crop-host tilt reveal reveal-d1 relative flex flex-col rounded-md border border-line bg-surface p-7 transition-[transform,border-color] duration-300 hover:-translate-y-1.5 hover:border-violet-light lg:p-9">
+              <span class="crop crop-tl"></span><span class="crop crop-tr"></span><span class="crop crop-bl"></span><span class="crop crop-br"></span>
+              <div class="mb-4 font-mono text-xs tracking-[0.05em] text-accent"><span class="text-muted">P.</span>01</div>
+              <h3 class="text-xl font-bold text-primary lg:text-2xl">Página para Rotisería 🍔</h3>
+              <p class="mt-3 grow leading-relaxed text-secondary">Plataforma de administración de rotisería: lista y sistema de pedidos, ganancias categorizadas y panel de productos y clientes. Diseño responsivo y experiencia optimizada.</p>
+              <div class="mt-6 flex flex-wrap gap-2">
+                <span class="rounded-xs border border-violet/30 bg-violet/10 px-2.5 py-1 font-mono text-[0.72rem] text-tag">HTML5</span>
+                <span class="rounded-xs border border-violet/30 bg-violet/10 px-2.5 py-1 font-mono text-[0.72rem] text-tag">CSS3</span>
+                <span class="rounded-xs border border-violet/30 bg-violet/10 px-2.5 py-1 font-mono text-[0.72rem] text-tag">JavaScript</span>
+                <span class="rounded-xs border border-violet/30 bg-violet/10 px-2.5 py-1 font-mono text-[0.72rem] text-tag">Responsive</span>
+              </div>
+              <a href="https://nicolaszgh.github.io/BuitreDelivery-Preview/" target="_blank" rel="noopener noreferrer" class="magnetic mt-7 inline-flex w-fit items-center gap-2 rounded-sm bg-lime px-5 py-3 text-sm font-bold text-lime-ink transition-[transform,box-shadow] hover:-translate-y-0.5 hover:shadow-[0_10px_24px_-6px_rgba(215,255,63,0.4)]" aria-label="Ver proyecto: Página para Rotisería (se abre en una pestaña nueva)">
+                Ver proyecto
+                <svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" aria-hidden="true"><path d="M7 17L17 7M17 7H9M17 7v8" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" /></svg>
+              </a>
+            </article>
+
+            <article class="crop-host tilt reveal reveal-d2 relative flex flex-col rounded-md border border-line bg-surface p-7 transition-[transform,border-color] duration-300 hover:-translate-y-1.5 hover:border-violet-light lg:p-9">
+              <span class="crop crop-tl"></span><span class="crop crop-tr"></span><span class="crop crop-bl"></span><span class="crop crop-br"></span>
+              <div class="mb-4 font-mono text-xs tracking-[0.05em] text-accent"><span class="text-muted">P.</span>02</div>
+              <h3 class="text-xl font-bold text-primary lg:text-2xl">Portfolio de Dibujos 🖌️</h3>
+              <p class="mt-3 grow leading-relaxed text-secondary">Galería interactiva para mostrar dibujos digitales, con filtros por categoría y animaciones suaves. Optimizada para imágenes de alta calidad.</p>
+              <div class="mt-6 flex flex-wrap gap-2">
+                <span class="rounded-xs border border-violet/30 bg-violet/10 px-2.5 py-1 font-mono text-[0.72rem] text-tag">HTML5</span>
+                <span class="rounded-xs border border-violet/30 bg-violet/10 px-2.5 py-1 font-mono text-[0.72rem] text-tag">CSS3</span>
+                <span class="rounded-xs border border-violet/30 bg-violet/10 px-2.5 py-1 font-mono text-[0.72rem] text-tag">JavaScript</span>
+                <span class="rounded-xs border border-violet/30 bg-violet/10 px-2.5 py-1 font-mono text-[0.72rem] text-tag">Responsive</span>
+              </div>
+              <a href="https://nicolaszgh.github.io/Smufful-Web/" target="_blank" rel="noopener noreferrer" class="magnetic mt-7 inline-flex w-fit items-center gap-2 rounded-sm bg-lime px-5 py-3 text-sm font-bold text-lime-ink transition-[transform,box-shadow] hover:-translate-y-0.5 hover:shadow-[0_10px_24px_-6px_rgba(215,255,63,0.4)]" aria-label="Ver proyecto: Portfolio de Dibujos (se abre en una pestaña nueva)">
+                Ver proyecto
+                <svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" aria-hidden="true"><path d="M7 17L17 7M17 7H9M17 7v8" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" /></svg>
+              </a>
+            </article>
+
+            <article class="crop-host tilt reveal reveal-d1 relative flex flex-col rounded-md border border-line bg-surface p-7 transition-[transform,border-color] duration-300 hover:-translate-y-1.5 hover:border-violet-light lg:p-9">
+              <span class="crop crop-tl"></span><span class="crop crop-tr"></span><span class="crop crop-bl"></span><span class="crop crop-br"></span>
+              <div class="mb-4 font-mono text-xs tracking-[0.05em] text-accent"><span class="text-muted">P.</span>03</div>
+              <h3 class="text-xl font-bold text-primary lg:text-2xl">Marca de café ☕</h3>
+              <p class="mt-3 grow leading-relaxed text-secondary">Landing para una cafetería que presenta sus servicios e información a los usuarios de forma clara y directa.</p>
+              <div class="mt-6 flex flex-wrap gap-2">
+                <span class="rounded-xs border border-violet/30 bg-violet/10 px-2.5 py-1 font-mono text-[0.72rem] text-tag">HTML5</span>
+                <span class="rounded-xs border border-violet/30 bg-violet/10 px-2.5 py-1 font-mono text-[0.72rem] text-tag">CSS3</span>
+                <span class="rounded-xs border border-violet/30 bg-violet/10 px-2.5 py-1 font-mono text-[0.72rem] text-tag">Responsive</span>
+              </div>
+              <a href="https://nicolaszgh.github.io/HTML5-CSS5-Page/" target="_blank" rel="noopener noreferrer" class="magnetic mt-7 inline-flex w-fit items-center gap-2 rounded-sm bg-lime px-5 py-3 text-sm font-bold text-lime-ink transition-[transform,box-shadow] hover:-translate-y-0.5 hover:shadow-[0_10px_24px_-6px_rgba(215,255,63,0.4)]" aria-label="Ver proyecto: Marca de café (se abre en una pestaña nueva)">
+                Ver proyecto
+                <svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" aria-hidden="true"><path d="M7 17L17 7M17 7H9M17 7v8" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" /></svg>
+              </a>
+            </article>
+
+            <article class="crop-host tilt reveal reveal-d2 relative flex flex-col rounded-md border border-line bg-surface p-7 transition-[transform,border-color] duration-300 hover:-translate-y-1.5 hover:border-violet-light lg:p-9">
+              <span class="crop crop-tl"></span><span class="crop crop-tr"></span><span class="crop crop-bl"></span><span class="crop crop-br"></span>
+              <div class="mb-4 font-mono text-xs tracking-[0.05em] text-accent"><span class="text-muted">P.</span>04</div>
+              <h3 class="text-xl font-bold text-primary lg:text-2xl">Marca de mates 🧉</h3>
+              <p class="mt-3 grow leading-relaxed text-secondary">Sitio para una empresa de mates que muestra sus servicios, productos e información con una experiencia cuidada.</p>
+              <div class="mt-6 flex flex-wrap gap-2">
+                <span class="rounded-xs border border-violet/30 bg-violet/10 px-2.5 py-1 font-mono text-[0.72rem] text-tag">HTML5</span>
+                <span class="rounded-xs border border-violet/30 bg-violet/10 px-2.5 py-1 font-mono text-[0.72rem] text-tag">CSS3</span>
+                <span class="rounded-xs border border-violet/30 bg-violet/10 px-2.5 py-1 font-mono text-[0.72rem] text-tag">Responsive</span>
+                <span class="rounded-xs border border-violet/30 bg-violet/10 px-2.5 py-1 font-mono text-[0.72rem] text-tag">JavaScript</span>
+                <span class="rounded-xs border border-violet/30 bg-violet/10 px-2.5 py-1 font-mono text-[0.72rem] text-tag">Bootstrap</span>
+              </div>
+              <a href="https://nicolaszgh.github.io/Boostrap-page/" target="_blank" rel="noopener noreferrer" class="magnetic mt-7 inline-flex w-fit items-center gap-2 rounded-sm bg-lime px-5 py-3 text-sm font-bold text-lime-ink transition-[transform,box-shadow] hover:-translate-y-0.5 hover:shadow-[0_10px_24px_-6px_rgba(215,255,63,0.4)]" aria-label="Ver proyecto: Marca de mates (se abre en una pestaña nueva)">
+                Ver proyecto
+                <svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" aria-hidden="true"><path d="M7 17L17 7M17 7H9M17 7v8" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" /></svg>
+              </a>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           CONTACTO
+           Editá email, teléfono y GitHub en los href y el texto.
+           ========================================================= -->
+      <section id="contacto" class="scroll-mt-24 border-t border-line py-20 lg:py-28" aria-labelledby="contacto-heading">
+        <div class="mx-auto max-w-[1240px] px-5 lg:px-8">
+          <div class="crop-host crop-always grid-field reveal relative overflow-hidden rounded-lg border border-line p-8 text-center sm:p-14">
+            <span class="crop crop-tl"></span><span class="crop crop-tr"></span><span class="crop crop-bl"></span><span class="crop crop-br"></span>
+
+            <p class="eyebrow justify-center">Contacto</p>
+            <h2 id="contacto-heading" class="mx-auto mt-4 max-w-2xl text-[clamp(1.8rem,4vw,2.6rem)]">
+              ¿Interesado en <span class="text-flow">trabajar juntos</span>?
+            </h2>
+            <p class="mx-auto mt-4 max-w-lg text-secondary">Creo soluciones web a medida que impulsan el crecimiento de tu marca.</p>
+
+            <div class="mt-9 flex flex-wrap justify-center gap-3">
+              <a href="mailto:nicolas.zorrilla.439@gmail.com" class="magnetic inline-flex items-center gap-2.5 rounded-sm border border-line bg-surface-2 px-4 py-3 font-mono text-sm text-primary transition-[transform,border-color] hover:-translate-y-0.5 hover:border-violet-light">
+                <svg viewBox="0 0 24 24" class="h-4 w-4 text-accent" fill="none" aria-hidden="true"><path d="M3 6.5 12 13l9-6.5M4 5h16a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></svg>
+                nicolas.zorrilla.439@gmail.com
+              </a>
+              <a href="tel:+5491234567890" class="magnetic inline-flex items-center gap-2.5 rounded-sm border border-line bg-surface-2 px-4 py-3 font-mono text-sm text-primary transition-[transform,border-color] hover:-translate-y-0.5 hover:border-violet-light">
+                <svg viewBox="0 0 24 24" class="h-4 w-4 text-accent" fill="none" aria-hidden="true"><path d="M6.5 3h3l1.5 4-2 1.5a11 11 0 0 0 4.5 4.5l1.5-2 4 1.5v3a2 2 0 0 1-2 2A15 15 0 0 1 4.5 5a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></svg>
+                +54 9 123 456-7890
+              </a>
+              <a href="https://github.com/NicolasZGH" target="_blank" rel="noopener noreferrer" class="magnetic inline-flex items-center gap-2.5 rounded-sm border border-line bg-surface-2 px-4 py-3 font-mono text-sm text-primary transition-[transform,border-color] hover:-translate-y-0.5 hover:border-violet-light">
+                <svg viewBox="0 0 24 24" class="h-4 w-4 text-accent" fill="none" aria-hidden="true"><path d="M9 19c-4 1.4-4-2-5-2m10 4v-3a3 3 0 0 0-.8-2.3c2.6-.3 5.4-1.3 5.4-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1-.3-3.4 1.3a11.6 11.6 0 0 0-6 0C6.9 2.2 5.9 2.5 5.9 2.5a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4.5 9c0 4.6 2.8 5.6 5.4 6a3 3 0 0 0-.8 2.3V21" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></svg>
+                github.com/NicolasZGH
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- =========================================================
+         PIE DE PÁGINA
+         ========================================================= -->
+    <footer class="border-t border-line py-10 text-center">
+      <p class="font-mono text-[0.78rem] text-muted">© 2026 Nicolás Zorrilla — Todos los derechos reservados.</p>
+    </footer>
+
+    <!-- Toda la interactividad (tema, menú, carrusel, efectos) -->
+    <script src="script.js"></script>
+  </body>
+</html>
