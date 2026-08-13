@@ -284,6 +284,208 @@ function setupCarousel(root) {
   start();
 }
 
+/* ============================================================
+   Campo de puntos interactivo del hero (canvas 2D)
+   Inspirado en el fondo de junie.jetbrains.com, adaptado a la
+   paleta lime del sitio.
+     - Grilla tenue de puntos con difusión: parches que se encienden
+       solos y fluyen (campo tipo plasma), más auto-blooms esporádicos.
+     - Al hacer click nace un "bloom": los puntos cercanos se
+       encienden en un anillo que se expande y se desvanece.
+       Varios clicks se acumulan.
+   Parámetros fáciles de tocar en CONFIG (abajo).
+   ============================================================ */
+const DOT_CONFIG = {
+  pitch: 24,          // separación entre puntos (px)
+  dotSize: 3,         // lado del cuadradito (px)
+  // Difusión ambiental: parches de puntos que se encienden solos y fluyen
+  // (campo tipo "plasma"). Los puntos aparecen por su cuenta, como en Junie.
+  noiseScale: 0.012,  // tamaño de los parches (más chico = parches más grandes)
+  noiseSpeed: 0.00034,// velocidad a la que fluye la difusión
+  diffusionThreshold: 0.62, // solo se encienden los parches por encima de esto
+                            // (más alto = menos puntos, grid más "vacío")
+  autoRippleMin: 2600,// cada cuánto nace un bloom solo (ms, mín)
+  autoRippleMax: 5200,// (ms, máx)
+  // Bloom del click (y de los auto-blooms)
+  ringSpeed: 0.42,    // px por ms que crece el anillo
+  ringSigma: 42,      // grosor del anillo (px)
+  rippleLife: 1500,   // duración del bloom (ms)
+};
+
+function hexToRgb(hex) {
+  const h = hex.trim().replace('#', '');
+  const s = h.length === 3 ? h.split('').map((c) => c + c).join('') : h;
+  const n = parseInt(s, 16);
+  return { r: (n >> 16) & 255, g: (n >> 8) & 255, b: n & 255 };
+}
+
+function initDotField() {
+  const canvas = document.getElementById('dot-field');
+  const host = document.getElementById('inicio');
+  if (!canvas || !host) return;
+  const ctx = canvas.getContext('2d');
+  if (!ctx) return;
+
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const C = DOT_CONFIG;
+
+  // Color de los puntos + opacidades, según el tema. Se recalcula al cambiar tema.
+  let color, floorAlpha, peakAlpha, brightAlpha, maxAlpha;
+  const readTheme = () => {
+    const css = getComputedStyle(document.documentElement).getPropertyValue('--c-lime') || '#d7ff3f';
+    color = hexToRgb(css);
+    const light = document.documentElement.getAttribute('data-theme') === 'light';
+    floorAlpha = 0;                    // grid invisible por defecto
+    peakAlpha = light ? 0.22 : 0.28;   // punto encendido por la difusión
+    brightAlpha = light ? 0.6 : 0.9;   // brillo máximo del bloom (click/auto)
+    maxAlpha = light ? 0.7 : 0.95;     // tope para no saturar
+  };
+  readTheme();
+
+  let dots = [];   // {x, y}
+  let W = 0, H = 0, dpr = 1, cx = 0, cy = 0;
+
+  // Campo de difusión: valor 0..1 por posición y tiempo. Parches que fluyen.
+  const plasma = (x, y, t) => {
+    const s = C.noiseScale, ts = t * C.noiseSpeed;
+    const v =
+      Math.sin(x * s + ts) +
+      Math.sin(y * s * 1.3 - ts * 0.9) +
+      Math.sin((x + y) * s * 0.7 + ts * 1.3) +
+      Math.sin(Math.hypot(x - cx, y - cy) * s * 0.9 - ts * 1.1);
+    return (v + 4) / 8; // normaliza a 0..1
+  };
+
+  const build = () => {
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    W = host.clientWidth;
+    H = host.clientHeight;
+    canvas.width = Math.round(W * dpr);
+    canvas.height = Math.round(H * dpr);
+    canvas.style.width = W + 'px';
+    canvas.style.height = H + 'px';
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    cx = W / 2;
+    cy = H / 2;
+
+    dots = [];
+    const p = C.pitch;
+    const offX = (W % p) / 2;
+    const offY = (H % p) / 2;
+    for (let y = offY + p / 2; y < H; y += p) {
+      for (let x = offX + p / 2; x < W; x += p) {
+        dots.push({ x, y });
+      }
+    }
+  };
+
+  const ripples = []; // {x, y, t0, amp}
+
+  const draw = (now) => {
+    ctx.clearRect(0, 0, W, H);
+    const half = C.dotSize / 2;
+    const twoSig2 = 2 * C.ringSigma * C.ringSigma;
+
+    // limpiar ondas vencidas
+    for (let i = ripples.length - 1; i >= 0; i--) {
+      if (now - ripples[i].t0 > C.rippleLife) ripples.splice(i, 1);
+    }
+
+    for (let i = 0; i < dots.length; i++) {
+      const d = dots[i];
+      // brillo ambiental por difusión: parches que se encienden y fluyen
+      let a = floorAlpha;
+      if (!reduceMotion) {
+        const f = plasma(d.x, d.y, now);
+        // umbral: por debajo el punto queda invisible; por encima aparece
+        let t = (f - C.diffusionThreshold) / (1 - C.diffusionThreshold);
+        if (t < 0) t = 0; else if (t > 1) t = 1;
+        const lit = t * t * (3 - 2 * t); // smoothstep suave
+        a = peakAlpha * lit;
+      }
+      // sumar el aporte de cada onda (click o auto-bloom)
+      for (let r = 0; r < ripples.length; r++) {
+        const rp = ripples[r];
+        const el = now - rp.t0;
+        const radius = el * C.ringSpeed;
+        const dx = d.x - rp.x, dy = d.y - rp.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist > radius + 3 * C.ringSigma) continue; // fuera del frente de onda
+        const decay = 1 - el / C.rippleLife;
+        const ring = Math.exp(-((dist - radius) * (dist - radius)) / twoSig2);
+        a += brightAlpha * rp.amp * decay * ring;
+      }
+      if (a <= 0.012) continue;
+      if (a > maxAlpha) a = maxAlpha;
+      ctx.fillStyle = `rgba(${color.r},${color.g},${color.b},${a.toFixed(3)})`;
+      ctx.fillRect(d.x - half, d.y - half, C.dotSize, C.dotSize);
+    }
+  };
+
+  // Bucle de animación (se pausa cuando el hero no está en pantalla)
+  let raf = 0;
+  let running = false;
+  let nextAuto = 0;
+  const rand = (a, b) => a + Math.random() * (b - a);
+  const loop = (now) => {
+    // auto-bloom: de vez en cuando nace un bloom solo en un punto al azar
+    if (!reduceMotion && now >= nextAuto) {
+      ripples.push({ x: rand(0, W), y: rand(0, H), t0: now, amp: 0.55 });
+      nextAuto = now + rand(C.autoRippleMin, C.autoRippleMax);
+    }
+    draw(now);
+    // la difusión anima siempre; en reduced-motion solo mientras haya ondas
+    if (running && (!reduceMotion || ripples.length)) raf = requestAnimationFrame(loop);
+    else raf = 0;
+  };
+  const kick = () => {
+    if (!raf && running) raf = requestAnimationFrame(loop);
+  };
+  const startLoop = () => {
+    running = true;
+    if (!nextAuto) nextAuto = performance.now() + rand(C.autoRippleMin, C.autoRippleMax);
+    kick();
+  };
+  const stopLoop = () => { running = false; if (raf) cancelAnimationFrame(raf); raf = 0; };
+
+  // Click → nueva onda (solo si cae dentro del hero)
+  window.addEventListener('pointerdown', (e) => {
+    if (reduceMotion) return;
+    const rect = canvas.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    if (x < 0 || y < 0 || x > rect.width || y > rect.height) return;
+    ripples.push({ x, y, t0: performance.now(), amp: 1 });
+    kick();
+  });
+
+  // Rebuild al cambiar tamaño
+  let rt;
+  const onResize = () => {
+    clearTimeout(rt);
+    rt = setTimeout(() => { build(); if (reduceMotion) draw(performance.now()); }, 150);
+  };
+  window.addEventListener('resize', onResize);
+
+  // Re-leer color al cambiar de tema
+  const themeBtn = document.getElementById('theme-toggle');
+  themeBtn && themeBtn.addEventListener('click', () => setTimeout(() => { readTheme(); draw(performance.now()); }, 0));
+
+  // Pausar cuando el hero sale de la pantalla
+  if ('IntersectionObserver' in window && !reduceMotion) {
+    new IntersectionObserver((entries) => {
+      entries.forEach((en) => (en.isIntersecting ? startLoop() : stopLoop()));
+    }, { threshold: 0 }).observe(host);
+  }
+
+  build();
+  if (reduceMotion) {
+    draw(performance.now()); // campo estático, sin animación ni clicks
+  } else {
+    startLoop();
+  }
+}
+
 /* ---------- Arranque ---------- */
 initTheme();
 initHeader();
@@ -293,3 +495,4 @@ initMagnetic();
 initTilt();
 initCursorGlow();
 initCarousel();
+initDotField();
