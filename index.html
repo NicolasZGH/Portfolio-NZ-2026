@@ -409,10 +409,22 @@
 
       /* Botón CTA "Trabajemos juntos": violeta en ambos temas (como lo tenía Nicolás). */
       #cta-button {
+        background: var(--c-lime);
+        color: var(--c-lime-ink);
+      }
+      
+      #cta-button:hover {
+        border-color: var(--c-lime);
+      }
+      
+      :root[data-theme='light'] #cta-button {
         background: var(--c-violet);
         color: #ffffff;
       }
-      #cta-button:hover { border-color: var(--c-violet-light); }
+      
+      :root[data-theme='light'] #cta-button:hover {
+        border-color: var(--c-violet-light);
+      }
 
       /* Ajustes móviles (heredados) */
       @media (max-width: 767px) {
