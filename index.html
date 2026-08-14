@@ -386,6 +386,27 @@
 
       body.modal-open { overflow: hidden; }
 
+      /* ============================================================
+         LOGO DE MARCA (header) — cambia según el tema
+         Blanco en oscuro, negro en claro.
+         ============================================================ */
+      .brand-logo-light { display: none; }
+      :root[data-theme='light'] .brand-logo-dark { display: none; }
+      :root[data-theme='light'] .brand-logo-light { display: block; }
+
+      /* Botón de tema: relleno lime en oscuro, violeta en claro.
+         Se maneja por CSS (no utilidades) para que no compita con la capa
+         @layer utilities de Tailwind. El icono hereda el color (currentColor). */
+      #theme-toggle {
+        background: var(--c-lime);
+        color: var(--c-lime-ink);
+      }
+      :root[data-theme='light'] #theme-toggle {
+        background: var(--c-violet);
+        color: #ffffff;
+      }
+      :root[data-theme='light'] #theme-toggle:hover { border-color: var(--c-violet-light); }
+
       /* Ajustes móviles (heredados) */
       @media (max-width: 767px) {
         /* ocultar chips de etiquetas de los logos en pantallas chicas */
@@ -475,9 +496,8 @@
         <!-- Logo / marca -->
         <a href="#inicio" class="group inline-flex items-center gap-3 focus:outline-none" aria-label="Nicolás Zorrilla — inicio">
           <span class="grid h-9 w-9 place-items-center rounded-[9px] border border-line-strong bg-surface transition-colors group-hover:border-lime">
-            <svg viewBox="0 0 24 24" class="h-5 w-5 text-accent" fill="none" aria-hidden="true">
-              <path d="M5 19V5l14 14V5" stroke="currentColor" stroke-width="1.7" stroke-linecap="square" />
-            </svg>
+            <img src="assets/logo-nz-white.webp" alt="" aria-hidden="true" width="24" height="24" class="brand-logo brand-logo-dark h-6 w-6" />
+            <img src="assets/logo-nz-black.webp" alt="" aria-hidden="true" width="24" height="24" class="brand-logo brand-logo-light h-6 w-6" />
           </span>
           <span class="font-mono text-[0.7rem] font-semibold uppercase leading-[1.2] tracking-[0.06em] text-primary">
             Nicolás<br />Zorrilla
@@ -515,13 +535,13 @@
           <button
             type="button"
             id="theme-toggle"
-            class="grid h-10 w-10 place-items-center rounded-[10px] border border-line-strong bg-surface text-primary transition-colors hover:border-lime"
+            class="grid h-10 w-10 place-items-center rounded-[10px] border border-transparent transition-colors hover:border-lime"
             aria-label="Cambiar tema"
           >
-            <svg class="h-5 w-5 light:hidden" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <svg class="hidden h-5 w-5 light:block" data-icon-moon viewBox="0 0 24 24" fill="none" aria-hidden="true">
               <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" />
             </svg>
-            <svg class="hidden h-5 w-5 light:block" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <svg class="h-5 w-5 light:hidden" data-icon-sun viewBox="0 0 24 24" fill="none" aria-hidden="true">
               <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.6" />
               <path d="M12 2v2M12 20v2M4 12H2M22 12h-2M5.6 5.6 4.2 4.2M19.8 19.8l-1.4-1.4M18.4 5.6l1.4-1.4M4.2 19.8l1.4-1.4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
             </svg>
