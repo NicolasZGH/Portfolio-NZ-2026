@@ -407,6 +407,13 @@
       }
       :root[data-theme='light'] #theme-toggle:hover { border-color: var(--c-violet-light); }
 
+      /* Botón CTA "Trabajemos juntos": violeta en ambos temas (como lo tenía Nicolás). */
+      #cta-button {
+        background: var(--c-violet);
+        color: #ffffff;
+      }
+      #cta-button:hover { border-color: var(--c-violet-light); }
+
       /* Ajustes móviles (heredados) */
       @media (max-width: 767px) {
         /* ocultar chips de etiquetas de los logos en pantallas chicas */
@@ -523,7 +530,8 @@
         <div class="flex items-center gap-2.5">
           <a
             href="#contacto"
-            class="magnetic hidden items-center gap-2 rounded-sm bg-lime px-4 py-2.5 text-sm font-semibold text-lime-ink transition-[background,transform] hover:-translate-y-0.5 md:inline-flex"
+            id="cta-button"
+            class="magnetic hidden items-center gap-2 rounded-sm border border-transparent px-4 py-2.5 text-sm font-semibold transition-[background,transform] hover:-translate-y-0.5 md:inline-flex"
           >
             Trabajemos juntos
             <svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" aria-hidden="true">
